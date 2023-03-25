@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02373CB429CD168B00305ADD /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* CollectionView.swift */; };
+		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
 		02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9862A29C1361300CB87A0 /* CardViewerApp.swift */; };
 		02C9862D29C1361300CB87A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9862C29C1361300CB87A0 /* ContentView.swift */; };
 		02C9862F29C1361400CB87A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C9862E29C1361400CB87A0 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02373CB329CD168B00305ADD /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
 		02C9862729C1361300CB87A0 /* CardViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C9862A29C1361300CB87A0 /* CardViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewerApp.swift; sourceTree = "<group>"; };
 		02C9862C29C1361300CB87A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 			children = (
 				02C9862A29C1361300CB87A0 /* CardViewerApp.swift */,
 				02C9862C29C1361300CB87A0 /* ContentView.swift */,
+				02373CB329CD168B00305ADD /* CollectionView.swift */,
+				02373CB729CD1BDD00305ADD /* Homework.rtf */,
 				02C9862E29C1361400CB87A0 /* Assets.xcassets */,
 				02C9863029C1361400CB87A0 /* Preview Content */,
 			);
@@ -125,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */,
 				02C9863229C1361400CB87A0 /* Preview Assets.xcassets in Resources */,
 				02C9862F29C1361400CB87A0 /* Assets.xcassets in Resources */,
 			);
@@ -137,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02373CB429CD168B00305ADD /* CollectionView.swift in Sources */,
 				02C9862D29C1361300CB87A0 /* ContentView.swift in Sources */,
 				02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */,
 			);

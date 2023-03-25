@@ -14,14 +14,20 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack {
                 Image(systemName: "globe")
+                    .resizable()
+                    .frame(maxWidth: 100, maxHeight: 100)
                     .imageScale(.large)
+                    .font(.largeTitle)
                 Text("CardViewer")
+                    .font(.largeTitle)
                 Button {
                     print("Start Pressed")
                 } label: {
-                    Color.green
+                    Text("Start")
+                        .font(.largeTitle)
+                        .background(Color.black)
                 }
-
+                .padding()
             }
         }
     }
