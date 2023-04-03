@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-struct Card: Identifiable {
-    var id = UUID()
-    var playerName: String
-    var team: String
-    var image: Image
-    var position: String
-}
 
 struct CardView: View {
     var card: Card
@@ -27,7 +20,7 @@ struct CardView: View {
             Spacer()
             Text(card.position)
             Spacer()
-            card.image
+            Image(card.imageName)
                 .resizable()
                 .frame(width: 150, height: 200)
                 .aspectRatio(contentMode: .fit)
@@ -38,23 +31,12 @@ struct CardView: View {
 struct CollectionView: View {
     
     let cards = [
-        Card(playerName: "Jalen Hurts", team: "Eagles", image: Image("jalenHurts"), position: "QB"),
-    Card(playerName: "A.J. Brown", team: "Eagles", image: Image("ajBrown"), position: "WR"),
-        Card(playerName: "Boston Scott", team: "Eagles", image: Image("bostonScott"), position: "RB")
+        Card(playerName: "Jalen Hurts", team: "Eagles", imageName: "jalenHurts", position: "QB"),
+    Card(playerName: "A.J. Brown", team: "Eagles", imageName: "ajBrown", position: "WR"),
+        Card(playerName: "Boston Scott", team: "Eagles", imageName: "bostonScott", position: "RB")
     ]
     
     var body: some View {
-//        List {
-//            Text("hi")
-//            Image(systemName: "xbox.logo")
-//        }
-//        ScrollView(.vertical) {
-//            VStack {
-//                ForEach(1..<101) { index in
-//                    Text("\(index)")
-//                }
-//            }
-//        }
         List {
             ForEach(cards) { card in
                 CardView(card: card)
