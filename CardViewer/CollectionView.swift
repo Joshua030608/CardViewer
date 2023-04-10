@@ -37,9 +37,14 @@ struct CollectionView: View {
     ]
     
     var body: some View {
-        List {
-            ForEach(cards) { card in
-                CardView(card: card)
+        NavigationStack {
+            VStack {
+                List {
+                    ForEach(cards) { card in
+                        CardView(card: card)
+                    }
+                }
+                NavigationLink("Go", destination: CardAddEditView())
             }
         }
     }
