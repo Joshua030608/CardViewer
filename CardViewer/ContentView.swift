@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    let folderStore: FolderStore
     var body: some View {
         NavigationStack {
             
@@ -34,10 +35,13 @@ struct ContentView: View {
             }
         }
     }
+    init(folderStore: FolderStore) {
+        self.folderStore = folderStore
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(folderStore: FolderStore())
     }
 }

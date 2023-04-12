@@ -8,7 +8,8 @@
 import SwiftUI
 import PhotosUI
 
-final class CardAddEditViewModel: ObservableObject {
+
+class CardAddEditViewModel: ObservableObject {
     @Published var nameString: String = ""
     @Published var posititionString: String = ""
     @Published var teamString: String = ""
@@ -16,7 +17,7 @@ final class CardAddEditViewModel: ObservableObject {
     @Published var selectedPhotos: [PhotosPickerItem] = []
     @Published var data: Data?
     
-    func change() {
+    func change(newValue: [PhotosPickerItem]) {
         guard let item = self.selectedPhotos.first else {
             return
         }
@@ -24,7 +25,9 @@ final class CardAddEditViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 if let data = data {
-                    self.data = data
+                    DispatchQueue.main.async {
+                        self.data = data
+                    }
                 } else {
                     print("failed to load")
                 }

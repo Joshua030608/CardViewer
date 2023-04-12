@@ -30,11 +30,6 @@ struct CardView: View {
 
 struct CollectionView: View {
     
-    let cards = [
-        Card(playerName: "Jalen Hurts", team: "Eagles", imageName: "jalenHurts", position: "QB"),
-    Card(playerName: "A.J. Brown", team: "Eagles", imageName: "ajBrown", position: "WR"),
-        Card(playerName: "Boston Scott", team: "Eagles", imageName: "bostonScott", position: "RB")
-    ]
     
     var body: some View {
         NavigationStack {

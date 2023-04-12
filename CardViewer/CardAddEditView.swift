@@ -13,6 +13,7 @@ struct CardAddEditView: View {
     
     var body: some View {
         VStack {
+            Form {
                 if let data = model.data, let uiImage = UIImage(data: data) {
                     Image(uiImage: uiImage)
                         .resizable()
@@ -33,7 +34,7 @@ struct CardAddEditView: View {
                         }.padding(100)
                 }
                 //Spacer(): doesn't do anything cuz of form
-            Form { //: Tried using form with image inside but didn't look correct
+             //: Tried using form with image inside but didn't look correct
                 TextField("Name", text: $model.nameString)
                     .multilineTextAlignment(.center)
                     .font(.largeTitle)
@@ -59,9 +60,8 @@ struct CardAddEditView: View {
                         }
                 }
             }
-        }.onChange(of: model.selectedPhotos) { newValue in
-            model.change()
         }
+        .onChange(of: model.selectedPhotos, perform: model.change)
     }
 }
 
