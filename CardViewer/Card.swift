@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Card: Identifiable {
+struct Card: Identifiable, Codable {
     let id: UUID
     var playerName: String
     var team: String

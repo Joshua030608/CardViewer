@@ -30,12 +30,13 @@ struct CardView: View {
 
 struct CollectionView: View {
     
+    let folderStore: FolderStore
     
     var body: some View {
         NavigationStack {
             VStack {
                 List {
-                    ForEach(cards) { card in
+                    ForEach(folderStore.folders.first!.cards) { card in
                         CardView(card: card)
                     }
                 }
@@ -45,8 +46,8 @@ struct CollectionView: View {
     }
 }
 
-struct CollectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        CollectionView()
-    }
-}
+//struct CollectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CollectionView()
+//    }
+//}
