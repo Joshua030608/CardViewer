@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		02373CB429CD168B00305ADD /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* CollectionView.swift */; };
 		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
+		025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */; };
 		02BCEC5029D7A22D009AC8EB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCEC4F29D7A22D009AC8EB /* Card.swift */; };
 		02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */; };
 		02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9862A29C1361300CB87A0 /* CardViewerApp.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		02373CB329CD168B00305ADD /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
+		025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		02BCEC4F29D7A22D009AC8EB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddEditView.swift; sourceTree = "<group>"; };
 		02C9862729C1361300CB87A0 /* CardViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 				02C9862C29C1361300CB87A0 /* ContentView.swift */,
 				02373CB329CD168B00305ADD /* CollectionView.swift */,
 				02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */,
+				025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */,
 				02EACFA129E60193001B1D44 /* CardAddEditViewModel.swift */,
 				02EACFA329E6235D001B1D44 /* Folder.swift */,
 				02EACFA529E624A0001B1D44 /* FolderStore.swift */,
@@ -162,6 +165,7 @@
 				02373CB429CD168B00305ADD /* CollectionView.swift in Sources */,
 				02C9862D29C1361300CB87A0 /* ContentView.swift in Sources */,
 				02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */,
+				025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */,
 				02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */,
 				02EACFA229E60193001B1D44 /* CardAddEditViewModel.swift in Sources */,
 				02EACFA629E624A0001B1D44 /* FolderStore.swift in Sources */,
@@ -294,12 +298,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.01;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_ASSET_PATHS = "\"CardViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KTP2C8ZWM3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take pictures of cards and scan them!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -327,12 +332,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.01;
+				CURRENT_PROJECT_VERSION = 1.02;
 				DEVELOPMENT_ASSET_PATHS = "\"CardViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KTP2C8ZWM3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take pictures of cards and scan them!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

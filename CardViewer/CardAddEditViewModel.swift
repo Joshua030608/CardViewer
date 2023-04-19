@@ -36,4 +36,10 @@ class CardAddEditViewModel: ObservableObject {
             }
         }
     }
+    
+    func changeForUIImage(newValue: UIImage) {
+        if let data = newValue.pngData() {
+            self.data = data
+        }
+    }
 }

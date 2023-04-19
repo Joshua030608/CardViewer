@@ -35,10 +35,19 @@ struct CollectionView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                List {
-                    ForEach(folderStore.folders.first!.cards) { card in
-                        CardView(card: card)
+                if let _ = folderStore.folders.first {
+                    List {
+                        ForEach(folderStore.folders.first!.cards) { card in
+                            CardView(card: card)
+                        }
                     }
+                } else {
+                    Text("No Cards Have Been Added!")
+                        .padding(125)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
+                        .multilineTextAlignment(.center)
                 }
                 NavigationLink("Go", destination: CardAddEditView())
             }
