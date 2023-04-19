@@ -20,7 +20,7 @@ struct CardView: View {
             Spacer()
             Text(card.position)
             Spacer()
-            Image(card.imageName)
+            Image(uiImage: UIImage(data: card.frontImageName!)!)
                 .resizable()
                 .frame(width: 150, height: 200)
                 .aspectRatio(contentMode: .fit)

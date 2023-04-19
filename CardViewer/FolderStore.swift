@@ -9,23 +9,25 @@ import Foundation
 
 struct FolderStore {
     var folders: [Folder]
+    private static let fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appending(component: "folders.txt")
     
     func saveFolders() {
-        
+        do {
+            let data = try JSONEncoder().encode(folders)
+            try data.write(to: Self.fileUrl)
+        } catch {
+            print(error,error.localizedDescription)
+        }
     }
     
     private static func loadFolders() -> [Folder] {
-        return [
-            Folder(
-                name: "Dummy",
-                cards: [
-                    Card(playerName: "Jalen Hurts", team: "Eagles", imageName: "jalenHurts", position: "QB"),
-                    Card(playerName: "A.J. Brown", team: "Eagles", imageName: "ajBrown", position: "WR"),
-                    Card(playerName: "Boston Scott", team: "Eagles", imageName: "bostonScott", position: "RB")
-                ],
-                league: .NFL
-            )
-        ]
+        do {
+            let data = try Data(contentsOf: fileUrl)
+            return try JSONDecoder().decode([Folder].self, from: data)
+        } catch {
+            print(error,error.localizedDescription)
+            return []
+        }
     }
     
     init() {

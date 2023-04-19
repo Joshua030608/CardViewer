@@ -11,14 +11,16 @@ struct Card: Identifiable, Codable {
     let id: UUID
     var playerName: String
     var team: String
-    var imageName: String
+    var frontImageName: Data?
+    var backImageName: Data?
     var position: String
     
-    init(id: UUID = UUID(), playerName: String, team: String, imageName: String, position: String) {
+    init(id: UUID = UUID(), playerName: String, team: String, frontImageName: Data?, backImageName: Data?, position: String) {
         self.id = id
         self.playerName = playerName
         self.team = team
-        self.imageName = imageName
+        self.frontImageName = frontImageName
+        self.backImageName = backImageName
         self.position = position
     }
 

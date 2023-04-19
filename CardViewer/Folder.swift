@@ -16,14 +16,14 @@ enum League: String, Codable {
 
 struct Folder: Identifiable, Codable {
     
-    enum CodingKeys: CodingKey {
+    private enum CodingKeys: CodingKey {
         case id
         case name
         case cards
         case league
     }
     
-    var id: UUID = UUID()
+    let id: UUID
     var name: String
     var cards: [Card]
     var league: League
