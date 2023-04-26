@@ -32,22 +32,31 @@ struct CollectionView: View {
     
     let folderStore: FolderStore
     
+    private var cards: [Card] {
+        if folderStore.folders.isEmpty {
+            return []
+        } else {
+            return folderStore.folders.first!.cards
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
-                if let _ = folderStore.folders.first {
+                ZStack {
                     List {
-                        ForEach(folderStore.folders.first!.cards) { card in
+                        ForEach(cards) { card in
                             CardView(card: card)
                         }
                     }
-                } else {
+                    .opacity(cards.isEmpty ? 0.0 : 1.0)
                     Text("No Cards Have Been Added!")
                         .padding(125)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.blue)
                         .multilineTextAlignment(.center)
+                        .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
                 NavigationLink("Go", destination: CardAddEditView())
             }

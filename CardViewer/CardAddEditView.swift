@@ -10,9 +10,6 @@ import PhotosUI
 
 struct CardAddEditView: View {
     @StateObject private var model = CardAddEditViewModel()
-    @State private var showSheet1 = false
-    @State private var showSheet2 = false
-    @State private var image = UIImage()
     
     var body: some View {
         VStack {
@@ -36,7 +33,7 @@ struct CardAddEditView: View {
                     //                            }
                     //                        }.padding(100)
                     Button {
-                        showSheet1 = true
+                        model.isShowingPhotoOptions = true
                     } label: {
                         VStack {
                             Image(systemName: "plus.circle.fill")
@@ -74,19 +71,20 @@ struct CardAddEditView: View {
                             }
                         }
                 }
+                
             }
         }
-        .onChange(of: image, perform: { newValue in
+        .onChange(of: model.image, perform: { newValue in
             model.changeForUIImage(newValue: newValue)
-            showSheet1 = false
-            showSheet2 = false
+            model.isShowingPhotoOptions = false
+            model.isShowingCamera = false
         })
         .onChange(of: model.selectedPhotos, perform: { newValue in
             model.change(newValue: newValue)
-            showSheet1 = false
-            showSheet2 = false
+            model.isShowingPhotoOptions = false
+            model.isShowingCamera = false
         })
-        .sheet(isPresented: $showSheet1) {
+        .sheet(isPresented: $model.isShowingPhotoOptions) {
             VStack {
                 PhotosPicker(
                     selection: $model.selectedPhotos,
@@ -104,8 +102,8 @@ struct CardAddEditView: View {
                 Button {
                     //go to camera
                     print("camera button pressed")
-                    showSheet1 = false
-                    showSheet2 = true
+                    model.isShowingPhotoOptions = false
+                    model.isShowingCamera = true
                 } label: {
                         VStack {
                             Image(systemName: "camera.fill")
@@ -121,8 +119,17 @@ struct CardAddEditView: View {
                 }
             }
         }
-        .sheet(isPresented: $showSheet2) {
-            ImagePicker(selectedImage: self.$image)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    print("save button pressed")
+                } label: {
+                    Text("Save")
+                }
+            }
+        }
+        .sheet(isPresented: $model.isShowingCamera) {
+            ImagePicker(selectedImage: $model.image)
         }
     }
 }

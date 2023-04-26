@@ -16,6 +16,9 @@ class CardAddEditViewModel: ObservableObject {
     @Published var grade: Int = 0
     @Published var selectedPhotos: [PhotosPickerItem] = []
     @Published var data: Data?
+    @Published var isShowingPhotoOptions = false
+    @Published var isShowingCamera = false
+    @Published var image = UIImage()
     
     func change(newValue: [PhotosPickerItem]) {
         guard let item = self.selectedPhotos.first else {
@@ -32,14 +35,16 @@ class CardAddEditViewModel: ObservableObject {
                     print("failed to load")
                 }
             case .failure(let failure):
-                fatalError("\(failure)")
+                print("failure \(failure)")
             }
         }
     }
     
     func changeForUIImage(newValue: UIImage) {
         if let data = newValue.pngData() {
-            self.data = data
+            DispatchQueue.main.async {
+                self.data = data
+            }
         }
     }
 }
