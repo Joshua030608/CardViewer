@@ -20,10 +20,15 @@ struct CardView: View {
             Spacer()
             Text(card.position)
             Spacer()
-            Image(uiImage: UIImage(data: card.frontImageName!)!)
-                .resizable()
-                .frame(width: 150, height: 200)
-                .aspectRatio(contentMode: .fit)
+            if let frontData = card.frontImageName {
+                Image(uiImage: UIImage(data: card.frontImageName!)!)
+                    .resizable()
+                    .frame(width: 150, height: 200)
+                    .aspectRatio(contentMode: .fit)
+            } else {
+                Text("No images found!")
+                    .font(.largeTitle)
+            }
         }
     }
 }
@@ -58,9 +63,10 @@ struct CollectionView: View {
                         .multilineTextAlignment(.center)
                         .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
-                NavigationLink("Go", destination: CardAddEditView())
+                NavigationLink("Go", destination: CardAddEditView(folderStore: folderStore))
             }
         }
+        .toolbar(.hidden)
     }
 }
 
