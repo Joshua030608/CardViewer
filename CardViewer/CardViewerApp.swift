@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct CardViewerApp: App {
-    @State private var folderStore = FolderStore()
+    @StateObject private var folderStore = FolderStore()
     var body: some Scene {
         WindowGroup {
             ContentView(folderStore: folderStore)

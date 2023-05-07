@@ -33,7 +33,7 @@ struct CardView: View {
     }
 }
 
-struct CollectionView: View {
+struct FolderView: View {
     
     let folderStore: FolderStore
     
@@ -63,7 +63,7 @@ struct CollectionView: View {
                         .multilineTextAlignment(.center)
                         .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
-                NavigationLink("Go", destination: CardAddEditView(folderStore: folderStore))
+                NavigationLink("Go", destination: CardAddEditView(folderStore: folderStore, folder: folderStore.folders[0]))
             }
         }
         .toolbar(.hidden)

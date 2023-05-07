@@ -14,7 +14,7 @@ enum League: String, Codable {
     case NHL = "NHL"
 }
 
-struct Folder: Identifiable, Codable {
+class Folder: Identifiable, Codable, ObservableObject {
     
     private enum CodingKeys: CodingKey {
         case id
@@ -24,9 +24,9 @@ struct Folder: Identifiable, Codable {
     }
     
     let id: UUID
-    var name: String
-    var cards: [Card]
-    var league: League
+    @Published var name: String
+    @Published var cards: [Card]
+    let league: League
     
     init(id: UUID = UUID(), name: String, cards: [Card], league: League) {
         self.id = id
@@ -37,7 +37,7 @@ struct Folder: Identifiable, Codable {
     //This init is used in FolderStore load folders func, probably not needed in future
     
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02373CB429CD168B00305ADD /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* CollectionView.swift */; };
+		02373CB429CD168B00305ADD /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* FolderView.swift */; };
 		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
 		025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */; };
 		02BCEC5029D7A22D009AC8EB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCEC4F29D7A22D009AC8EB /* Card.swift */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02373CB329CD168B00305ADD /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		02373CB329CD168B00305ADD /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
 		025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		02BCEC4F29D7A22D009AC8EB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			children = (
 				02C9862A29C1361300CB87A0 /* CardViewerApp.swift */,
 				02C9862C29C1361300CB87A0 /* ContentView.swift */,
-				02373CB329CD168B00305ADD /* CollectionView.swift */,
+				02373CB329CD168B00305ADD /* FolderView.swift */,
 				02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */,
 				025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */,
 				02EACFA129E60193001B1D44 /* CardAddEditViewModel.swift */,
@@ -162,7 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02373CB429CD168B00305ADD /* CollectionView.swift in Sources */,
+				02373CB429CD168B00305ADD /* FolderView.swift in Sources */,
 				02C9862D29C1361300CB87A0 /* ContentView.swift in Sources */,
 				02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */,
 				025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */,

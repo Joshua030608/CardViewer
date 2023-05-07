@@ -11,8 +11,13 @@ import PhotosUI
 struct CardAddEditView: View {
     let folderStore: FolderStore
     
-    @StateObject private var model = CardAddEditViewModel()
+    @StateObject private var model: CardAddEditViewModel
     @State private var moveBackToCollection = false
+    
+    init(folderStore: FolderStore, folder: Folder) {
+        self.folderStore = folderStore
+        self._model = StateObject(wrappedValue: CardAddEditViewModel(folderStore: folderStore, folder: folder))
+    }
     
     var body: some View {
         NavigationStack {
@@ -77,7 +82,7 @@ struct CardAddEditView: View {
                     }
                     
                 }
-                NavigationLink(destination: CollectionView(folderStore: folderStore), isActive: $moveBackToCollection) {
+                NavigationLink(destination: FolderView(folderStore: folderStore), isActive: $moveBackToCollection) {
                     EmptyView()
                 }
             }
@@ -130,7 +135,7 @@ struct CardAddEditView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         print("save button pressed")
-                        model.saveCardToFolder(0, of: folderStore)
+                        model.saveCardToFolder()
                         moveBackToCollection = true
                     } label: {
                         Text("Save")

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct FolderStore {
-    var folders: [Folder]
+class FolderStore: ObservableObject {
+    @Published var folders: Array<Folder>
     private static let fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appending(component: "folders.txt")
     
     func saveFolders() {
