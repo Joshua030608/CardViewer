@@ -53,7 +53,7 @@ class CardAddEditViewModel: ObservableObject {
     
     func saveCardToFolder() {
         // if id == id of another card, then edit existing card and don't add a new card. Can't do this yet because editing feature is not out.
-        let card = Card(playerName: nameString, team: teamString, frontImageName: frontData, backImageName: frontData, position: posititionString)
+        let card = Card(playerName: nameString, team: teamString, frontImageName: frontData, backImageName: backData, position: posititionString)
         #warning("need to update change funcs to use back data, also add ability to pick folder.")
         print(card.frontImageName != nil ? "data exists" : "data is nil")
         folder.cards.append(card)

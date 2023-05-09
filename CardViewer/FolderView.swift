@@ -12,22 +12,28 @@ struct CardView: View {
     var card: Card
     
     var body: some View {
-        HStack {
-            VStack {
-                Text(card.playerName)
-                Text(card.team)
-            }
-            Spacer()
-            Text(card.position)
-            Spacer()
-            if let frontData = card.frontImageName {
-                Image(uiImage: UIImage(data: card.frontImageName!)!)
-                    .resizable()
-                    .frame(width: 150, height: 200)
-                    .aspectRatio(contentMode: .fit)
-            } else {
-                Text("No images found!")
-                    .font(.largeTitle)
+        NavigationStack {
+            NavigationLink {
+                CardInfoView(card: card)
+            } label: {
+                HStack {
+                    VStack {
+                        Text(card.playerName)
+                        Text(card.team)
+                    }
+                    Spacer()
+                    Text(card.position)
+                    Spacer()
+                    if let frontData = card.frontImageName {
+                        Image(uiImage: UIImage(data: card.frontImageName!)!)
+                            .resizable()
+                            .frame(width: 150, height: 200)
+                            .aspectRatio(contentMode: .fit)
+                    } else {
+                        Text("No images found!")
+                            .font(.largeTitle)
+                    }
+                }
             }
         }
     }
