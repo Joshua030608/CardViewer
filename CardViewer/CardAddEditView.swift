@@ -14,9 +14,10 @@ struct CardAddEditView: View {
     @StateObject private var model: CardAddEditViewModel
     @State private var moveBackToCollection = false
     
-    init(folderStore: FolderStore, folder: Folder) {
+    init(folderStore: FolderStore, folder: Folder, card: Card?) {
         self.folderStore = folderStore
-        self._model = StateObject(wrappedValue: CardAddEditViewModel(folderStore: folderStore, folder: folder))
+        let viewModel = CardAddEditViewModel(folderStore: folderStore, folder: folder, card: card)
+        self._model = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -56,15 +57,15 @@ struct CardAddEditView: View {
                     }
                     //Spacer(): doesn't do anything cuz of form
                     //: Tried using form with image inside but didn't look correct
-                    TextField("Name", text: $model.nameString)
+                    TextField("Name", text: $model.card.playerName)
                         .multilineTextAlignment(.center)
                         .font(.largeTitle)
                         .textFieldStyle(.roundedBorder)
-                    TextField("Team", text: $model.teamString)
+                    TextField("Team", text: $model.card.team)
                         .multilineTextAlignment(.center)
                         .font(.title2)
                         .textFieldStyle(.roundedBorder)
-                    TextField("Position", text: $model.posititionString)
+                    TextField("Position", text: $model.card.position)
                         .multilineTextAlignment(.center)
                         .font(.title2)
                         .textFieldStyle(.roundedBorder)
@@ -72,7 +73,7 @@ struct CardAddEditView: View {
                         Text("Grade:")
                             .font(.title2)
                         Picker(
-                            selection: $model.grade,
+                            selection: $model.card.grade,
                             label: Text("")) {
                                 ForEach(0..<11) { number in
                                     Text("\(number)")

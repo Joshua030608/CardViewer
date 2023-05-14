@@ -11,6 +11,7 @@ struct CardInfoView: View {
     
     let card: Card
     @State var moveToCardAddEditView = false
+    @EnvironmentObject var folderStore: FolderStore
     
     var body: some View {
         VStack {
@@ -34,6 +35,7 @@ struct CardInfoView: View {
                 .font(.title2)
             Text(card.team)
                 .font(.title2)
+            Text(String(folderStore.folders.count))
         }.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
@@ -44,8 +46,16 @@ struct CardInfoView: View {
                 }
             }
         }
-//        NavigationLink(destination: CardAddEditView(folderStore: <#T##FolderStore#>, folder: <#T##Folder#>), isActive: $moveToCardAddEditView) {
-//            EmptyView()
-//        }
+        NavigationLink(
+            destination:
+                CardAddEditView(
+                    folderStore: folderStore,
+                    folder: folderStore.folders.first!,
+                    card: card
+                ),
+               isActive: $moveToCardAddEditView
+        ) {
+            EmptyView()
+        }
     }
 }

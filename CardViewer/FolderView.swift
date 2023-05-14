@@ -69,7 +69,15 @@ struct FolderView: View {
                         .multilineTextAlignment(.center)
                         .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
-                NavigationLink("Go", destination: CardAddEditView(folderStore: folderStore, folder: folderStore.folders[0]))
+                NavigationLink(
+                    "Go",
+                    destination:
+                        CardAddEditView(
+                            folderStore: folderStore,
+                            folder: folderStore.folders[0],
+                            card: nil
+                        )
+                )
             }
         }
         .toolbar(.hidden)

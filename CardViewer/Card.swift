@@ -14,14 +14,16 @@ struct Card: Identifiable, Codable {
     var frontImageName: Data?
     var backImageName: Data?
     var position: String
+    var grade: Int
     
-    init(id: UUID = UUID(), playerName: String, team: String, frontImageName: Data?, backImageName: Data?, position: String) {
+    init(id: UUID = UUID(), playerName: String, team: String, frontImageName: Data?, backImageName: Data?, position: String, grade: Int) {
         self.id = id
         self.playerName = playerName
         self.team = team
         self.frontImageName = frontImageName
         self.backImageName = backImageName
         self.position = position
+        self.grade = grade
     }
 
 }

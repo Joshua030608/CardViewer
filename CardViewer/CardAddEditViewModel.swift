@@ -22,6 +22,8 @@ class CardAddEditViewModel: ObservableObject {
     @Published var image = UIImage()
     var folderStore: FolderStore
     let folder: Folder
+    @Published var card: Card
+    let isEditing: Bool
     
     func change(newValue: [PhotosPickerItem]) {
         guard let item = self.selectedPhotos.first else {
@@ -53,15 +55,23 @@ class CardAddEditViewModel: ObservableObject {
     
     func saveCardToFolder() {
         // if id == id of another card, then edit existing card and don't add a new card. Can't do this yet because editing feature is not out.
-        let card = Card(playerName: nameString, team: teamString, frontImageName: frontData, backImageName: backData, position: posititionString)
+        let card = Card(playerName: nameString, team: teamString, frontImageName: frontData, backImageName: backData, position: posititionString, grade: grade)
         #warning("need to update change funcs to use back data, also add ability to pick folder.")
         print(card.frontImageName != nil ? "data exists" : "data is nil")
         folder.cards.append(card)
         folderStore.saveFolders()
     }
     
-    init(folderStore: FolderStore, folder: Folder) {
+    init(folderStore: FolderStore, folder: Folder, card: Card?) {
         self.folderStore = folderStore
         self.folder = folder
+        
+        if let card = card {
+            self.isEditing = true
+            self.card = card
+        } else {
+            self.isEditing = false
+            self.card = Card(playerName: "Name", team: "Team", frontImageName: nil, backImageName: nil, position: "Position", grade: 0)
+        }
     }
 }

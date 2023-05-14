@@ -13,6 +13,7 @@ struct CardViewerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(folderStore: folderStore)
+                .environmentObject(folderStore)
         }
     }
 }
