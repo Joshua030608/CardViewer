@@ -11,6 +11,17 @@ class FolderStore: ObservableObject {
     @Published var folders: Array<Folder>
     private static let fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appending(component: "folders.txt")
     
+    func save(folder: Folder) {
+        for (index, folder1) in folders.enumerated() {
+            if folder1.id == folder.id {
+                //overwrite previous folder
+                folders[index] = folder
+                return
+            }
+        }
+        folders.append(folder)
+    }
+    
     func saveFolders() {
         do {
             let data = try JSONEncoder().encode(folders)
