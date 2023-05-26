@@ -7,14 +7,27 @@
 
 import Foundation
 
-enum League: String, Codable {
+enum League: String, Codable, CaseIterable, Identifiable {
+    var id: League { self }
+    
     case NFL = "NFL"
     case NBA = "NBA"
     case MLB = "MLB"
     case NHL = "NHL"
 }
 
-class Folder: Identifiable, Codable, ObservableObject {
+class Folder: Identifiable, Codable, ObservableObject, Hashable {
+    
+    static func == (lhs: Folder, rhs: Folder) -> Bool {
+        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.cards == rhs.cards && lhs.league == rhs.league
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+        hasher.combine(cards)
+        hasher.combine(league)
+    }
     
     private enum CodingKeys: CodingKey {
         case id

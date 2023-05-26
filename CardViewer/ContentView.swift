@@ -24,7 +24,7 @@ struct ContentView: View {
                     Text("CardViewer")
                         .font(.largeTitle)
                     NavigationLink {
-                        FolderView(folderStore: folderStore)
+                        FolderListView(folderStore: folderStore)
                     } label: {
                         Text("Start")
                             .font(.largeTitle)

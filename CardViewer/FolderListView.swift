@@ -1,78 +1,37 @@
 //
-//  CollectionView.swift
+//  FolderListView.swift
 //  CardViewer
 //
-//  Created by Joshua Ford on 3/23/23.
+//  Created by Joshua Ford on 5/23/23.
 //
 
 import SwiftUI
 
-
-struct CardView: View {
-    var card: Card
-    
-    var body: some View {
-        NavigationStack {
-            NavigationLink {
-                CardInfoView(card: card)
-            } label: {
-                HStack {
-                    VStack {
-                        Text(card.playerName)
-                        Text(card.team)
-                    }
-                    Spacer()
-                    Text(card.position)
-                    Spacer()
-                    if let frontData = card.frontImageName {
-                        Image(uiImage: UIImage(data: card.frontImageName!)!)
-                            .resizable()
-                            .frame(width: 150, height: 200)
-                            .aspectRatio(contentMode: .fit)
-                    } else {
-                        Text("No images found!")
-                            .font(.largeTitle)
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct FolderView: View {
-    
+struct FolderListView: View {
     let folderStore: FolderStore
-    
     @State private var folderAddEditIsShowing = false
     @State private var newFolderName = ""
     @State private var newFolderLeague: League = .NFL
     @State private var newFolderCards: [Card] = []
     
-    private var cards: [Card] {
-        if folderStore.folders.isEmpty {
-            return []
-        } else {
-            return folderStore.folders.first!.cards
-        }
-    }
-    
     var body: some View {
-        NavigationStack {
+        NavigationStack{
             VStack {
-                ZStack {
-                    List {
-                        ForEach(cards) { card in
-                            CardView(card: card)
+                List {
+                    ForEach(folderStore.folders) { folder in
+                        NavigationLink(value: folder) {
+                            HStack {
+                                Text("Name: " + folder.name)
+                                    .font(.largeTitle)
+                                Text("League: " + folder.league.rawValue)
+                                    .font(.title)
+                                Text("# of Cards: " + String(folder.cards.count))
+                                    .font(.title)
+                            }
                         }
+                    }.navigationDestination(for: Folder.self) { folder in
+                        FolderView(folderStore: folderStore)
                     }
-                    .opacity(cards.isEmpty ? 0.0 : 1.0)
-                    Text("No Cards Have Been Added!")
-                        .padding(125)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                        .multilineTextAlignment(.center)
-                        .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
                 Button {
                     folderAddEditIsShowing = true
@@ -80,10 +39,8 @@ struct FolderView: View {
                     Text("Add Folder")
                         .font(.largeTitle)
                 }
-
             }
-        }
-        .sheet(isPresented: $folderAddEditIsShowing, content: {
+        }.sheet(isPresented: $folderAddEditIsShowing, content: {
             VStack {
                 TextField("Name", text: $newFolderName)
                     .textFieldStyle(.roundedBorder)
@@ -111,15 +68,8 @@ struct FolderView: View {
                         .foregroundColor(.white)
                         .background(.blue)
                 }
-
+                
             }
         })
-        .toolbar(.hidden)
     }
 }
-
-//struct CollectionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CollectionView()
-//    }
-//}
