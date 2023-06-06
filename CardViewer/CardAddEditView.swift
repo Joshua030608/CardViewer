@@ -83,7 +83,7 @@ struct CardAddEditView: View {
                     }
                     
                 }
-                NavigationLink(destination: FolderView(folderStore: folderStore), isActive: $moveBackToCollection) {
+                NavigationLink(destination: FolderView(folderStore: folderStore, folder: model.folder), isActive: $moveBackToCollection) {
                     EmptyView()
                 }
             }
@@ -135,9 +135,13 @@ struct CardAddEditView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        print("save button pressed")
-                        model.saveCardToFolder()
-                        moveBackToCollection = true
+                        if model.card.playerName != "Name" && model.card.team != "Team" && model.card.position != "Position" {
+                            print("save button pressed")
+                            model.saveCardToFolder()
+                            moveBackToCollection = true
+                        } else {
+                            print("properties not updated so didn't save")
+                        }
                     } label: {
                         Text("Save")
                     }

@@ -35,7 +35,11 @@ struct CardInfoView: View {
                 .font(.title2)
             Text(card.team)
                 .font(.title2)
-            Text(String(folderStore.folders.count))
+            Text("Number of folders: " + String(folderStore.folders.count))
+            if card.playerName == nil || card.playerName == "" {
+                Text("No player name given")
+                    .font(Font(CTFont(.system, size: 30)))
+            }
         }.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {

@@ -19,6 +19,7 @@ struct FolderListView: View {
             VStack {
                 List {
                     ForEach(folderStore.folders) { folder in
+                        /*
                         NavigationLink(value: folder) {
                             HStack {
                                 Text("Name: " + folder.name)
@@ -28,10 +29,20 @@ struct FolderListView: View {
                                 Text("# of Cards: " + String(folder.cards.count))
                                     .font(.title)
                             }
+                        } */
+                        NavigationLink(destination: FolderView(folderStore: folderStore, folder: folder)) {
+                            HStack {
+                                Text("Name: " + folder.name)
+                                    .font(.largeTitle)
+                                Text("League: " + folder.league.rawValue)
+                                    .font(.title)
+                                Text("# of Cards: " + String(folder.cards.count))
+                                    .font(.title)
+                            }
                         }
-                    }.navigationDestination(for: Folder.self) { folder in
+                    }/*.navigationDestination(for: Folder.self) { folder in
                         FolderView(folderStore: folderStore)
-                    }
+                    } */
                 }
                 Button {
                     folderAddEditIsShowing = true

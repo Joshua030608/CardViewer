@@ -20,6 +20,7 @@ class FolderStore: ObservableObject {
             }
         }
         folders.append(folder)
+        self.saveFolders()
     }
     
     func saveFolders() {

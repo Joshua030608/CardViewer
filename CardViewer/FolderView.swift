@@ -20,6 +20,10 @@ struct CardView: View {
                     VStack {
                         Text(card.playerName)
                         Text(card.team)
+                        if card.playerName == "" {
+                            Text("No name")
+                                .font(.title2)
+                        }
                     }
                     Spacer()
                     Text(card.position)
@@ -31,7 +35,7 @@ struct CardView: View {
                             .aspectRatio(contentMode: .fit)
                     } else {
                         Text("No images found!")
-                            .font(.largeTitle)
+                            .font(.title3)
                     }
                 }
             }
@@ -42,6 +46,7 @@ struct CardView: View {
 struct FolderView: View {
     
     let folderStore: FolderStore
+    let folder: Folder
     
     @State private var folderAddEditIsShowing = false
     @State private var newFolderName = ""
@@ -74,16 +79,14 @@ struct FolderView: View {
                         .multilineTextAlignment(.center)
                         .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
-                Button {
-                    folderAddEditIsShowing = true
-                } label: {
-                    Text("Add Folder")
+                
+                NavigationLink(destination: CardAddEditView(folderStore: folderStore, folder: folder, card: nil)) {
+                    Text("Add Card")
                         .font(.largeTitle)
                 }
-
             }
         }
-        .sheet(isPresented: $folderAddEditIsShowing, content: {
+        /*.sheet(isPresented: $folderAddEditIsShowing, content: {
             VStack {
                 TextField("Name", text: $newFolderName)
                     .textFieldStyle(.roundedBorder)
@@ -113,8 +116,7 @@ struct FolderView: View {
                 }
 
             }
-        })
-        .toolbar(.hidden)
+        }) */
     }
 }
 
