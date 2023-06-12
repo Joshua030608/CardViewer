@@ -11,17 +11,17 @@ struct Card: Identifiable, Codable, Hashable {
     let id: UUID
     var playerName: String
     var team: String
-    var frontImageName: Data?
-    var backImageName: Data?
+    var frontImageData: Data?
+    var backImageData: Data?
     var position: String
     var grade: Int
     
-    init(id: UUID = UUID(), playerName: String, team: String, frontImageName: Data?, backImageName: Data?, position: String, grade: Int) {
+    init(id: UUID = UUID(), playerName: String, team: String, frontImageData: Data?, backImageData: Data?, position: String, grade: Int) {
         self.id = id
         self.playerName = playerName
         self.team = team
-        self.frontImageName = frontImageName
-        self.backImageName = backImageName
+        self.frontImageData = frontImageData
+        self.backImageData = backImageData
         self.position = position
         self.grade = grade
     }

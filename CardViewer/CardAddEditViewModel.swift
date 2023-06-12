@@ -10,13 +10,7 @@ import PhotosUI
 
 
 class CardAddEditViewModel: ObservableObject {
-    @Published var nameString: String = ""
-    @Published var posititionString: String = ""
-    @Published var teamString: String = ""
-    @Published var grade: Int = 0
     @Published var selectedPhotos: [PhotosPickerItem] = []
-    @Published var frontData: Data?
-    @Published var backData: Data?
     @Published var isShowingPhotoOptions = false
     @Published var isShowingCamera = false
     @Published var image = UIImage()
@@ -25,17 +19,12 @@ class CardAddEditViewModel: ObservableObject {
     @Published var card: Card
     let isEditing: Bool
     
-    func change(newValue: [PhotosPickerItem]) {
-        guard let item = self.selectedPhotos.first else {
-            return
-        }
+    fileprivate func getDataFromSelectedPhoto(item: PhotosPickerItem) -> Data {
         item.loadTransferable(type: Data.self) { result in
             switch result {
             case .success(let data):
                 if let data = data {
-                    DispatchQueue.main.async {
-                        self.frontData = data
-                    }
+                    return data
                 } else {
                     print("failed to load")
                 }
@@ -45,22 +34,35 @@ class CardAddEditViewModel: ObservableObject {
         }
     }
     
+    func change(newValue: [PhotosPickerItem]) {
+        DispatchQueue.main.async {
+            guard let item1 = self.selectedPhotos.first else { return }
+            self.card.frontImageData = getDataFromSelectedPhoto(item: item1)
+            
+            guard self.selectedPhotos.count >= 2 else { return }
+            self.card.backImageData = getDataFromSelectedPhoto(item: self.selectedPhotos[1])
+        }
+    }
+    
     func changeForUIImage(newValue: UIImage) {
         if let data = newValue.pngData() {
             DispatchQueue.main.async {
-                self.frontData = data
+                self.card.frontImageData = data
+                self.card.backImageData
             }
         }
     }
     
     func saveCardToFolder() {
         // if id == id of another card, then edit existing card and don't add a new card. Can't do this yet because editing feature is not out.
-        let card = Card(playerName: nameString, team: teamString, frontImageName: frontData, backImageName: backData, position: posititionString, grade: grade)
-        #warning("need to update change funcs to use back data")
-        print(card.frontImageName != nil ? "data exists" : "data is nil")
-        print("Name String: " + nameString + "Card Name: " + card.playerName)
-        folder.cards.append(card)
-        folderStore.saveFolders()
+        
+        if let index = folder.cards.firstIndex(where: { card.id == $0.id }) {
+            folder.cards[index] = card
+        } else {
+            #warning("need to update change funcs to use back data")
+            folder.cards.append(self.card)
+        }
+            folderStore.saveFolders()
     }
     
     init(folderStore: FolderStore, folder: Folder, card: Card?) {
@@ -72,7 +74,7 @@ class CardAddEditViewModel: ObservableObject {
             self.card = card
         } else {
             self.isEditing = false
-            self.card = Card(playerName: "Name", team: "Team", frontImageName: nil, backImageName: nil, position: "Position", grade: 0)
+            self.card = Card(playerName: "Name", team: "Team", frontImageData: nil, backImageData: nil, position: "Position", grade: 0)
         }
     }
 }

@@ -28,8 +28,8 @@ struct CardView: View {
                     Spacer()
                     Text(card.position)
                     Spacer()
-                    if let frontData = card.frontImageName {
-                        Image(uiImage: UIImage(data: card.frontImageName!)!)
+                    if let frontData = card.frontImageData {
+                        Image(uiImage: UIImage(data: card.frontImageData!)!)
                             .resizable()
                             .frame(width: 150, height: 200)
                             .aspectRatio(contentMode: .fit)

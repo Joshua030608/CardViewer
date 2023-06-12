@@ -16,13 +16,13 @@ struct CardInfoView: View {
     var body: some View {
         VStack {
             HStack {
-                if let frontData = card.frontImageName {
+                if let frontData = card.frontImageData {
                     Image(uiImage: UIImage(data: frontData)!)
                         .resizable()
                         .frame(width: 150, height: 300)
                         .aspectRatio(contentMode: .fit)
                 }
-                if let backData = card.backImageName {
+                if let backData = card.backImageData {
                     Image(uiImage: UIImage(data: backData)!)
                         .resizable()
                         .frame(width: 180, height: 300)

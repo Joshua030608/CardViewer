@@ -24,7 +24,7 @@ struct CardAddEditView: View {
         NavigationStack {
             VStack {
                 Form {
-                    if let data = model.frontData, let uiImage = UIImage(data: data) {
+                    if let data = model.card.frontImageData, let uiImage = UIImage(data: data) {
                         Image(uiImage: uiImage)
                             .resizable()
                             .frame(width: 100, height: 100)
