@@ -8,6 +8,36 @@
 import SwiftUI
 import PhotosUI
 
+struct CardAddEditImageView: View {
+    
+    let frontData: Data?
+    let backData: Data?
+    
+    init(frontData: Data?, backData: Data?) {
+        self.frontData = frontData
+        self.backData = backData
+    }
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            if let data = frontData, let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .padding(10)
+                if let backData = backData, let backuiImage = UIImage(data: backData) {
+                    Image(uiImage: backuiImage)
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .padding(10)
+                }
+            }
+            Spacer()
+        }
+    }
+}
+
 struct CardAddEditView: View {
     let folderStore: FolderStore
     
@@ -23,25 +53,11 @@ struct CardAddEditView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Spacer()
                 Form {
-                    if let data = model.card.frontImageData, let uiImage = UIImage(data: data) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .frame(width: 100, height: 100)
+                    if let _ = model.card.frontImageData {
+                        CardAddEditImageView(frontData: model.card.frontImageData, backData: model.card.backImageData)
                     } else {
-                        //                    PhotosPicker(
-                        //                        selection: $model.selectedPhotos,
-                        //                        maxSelectionCount: 5,
-                        //                        matching: .images) {
-                        //                            VStack {
-                        //                                Image(systemName: "plus.circle.fill")
-                        //                                    .resizable()
-                        //                                    .frame(width: 100, height: 100)
-                        //                                Text("Add Image(s)")
-                        //                                    .font(.largeTitle)
-                        //                                    .frame(width: 197)
-                        //                            }
-                        //                        }.padding(100)
                         Button {
                             model.isShowingPhotoOptions = true
                         } label: {
@@ -85,7 +101,8 @@ struct CardAddEditView: View {
                 }
                 NavigationLink(destination: FolderView(folderStore: folderStore, folder: model.folder), isActive: $moveBackToCollection) {
                     EmptyView()
-                }
+                }.padding(15)
+                Spacer()
             }
             .onChange(of: model.image, perform: { newValue in
                 model.changeForUIImage(newValue: newValue)

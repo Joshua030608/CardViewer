@@ -19,12 +19,13 @@ class CardAddEditViewModel: ObservableObject {
     @Published var card: Card
     let isEditing: Bool
     
-    fileprivate func getDataFromSelectedPhoto(item: PhotosPickerItem) -> Data {
-        item.loadTransferable(type: Data.self) { result in
+    fileprivate func getDataFromSelectedPhoto(item: PhotosPickerItem, completion: @escaping (Data) -> ()) {
+        
+         item.loadTransferable(type: Data.self) { result in
             switch result {
             case .success(let data):
                 if let data = data {
-                    return data
+                    completion(data)
                 } else {
                     print("failed to load")
                 }
@@ -32,15 +33,20 @@ class CardAddEditViewModel: ObservableObject {
                 print("failure \(failure)")
             }
         }
+        
     }
     
     func change(newValue: [PhotosPickerItem]) {
         DispatchQueue.main.async {
             guard let item1 = self.selectedPhotos.first else { return }
-            self.card.frontImageData = getDataFromSelectedPhoto(item: item1)
+            self.getDataFromSelectedPhoto(item: item1) { result in
+                self.card.frontImageData = result
+            }
             
             guard self.selectedPhotos.count >= 2 else { return }
-            self.card.backImageData = getDataFromSelectedPhoto(item: self.selectedPhotos[1])
+            self.getDataFromSelectedPhoto(item: self.selectedPhotos[1]) { result in
+                self.card.backImageData = result
+            }
         }
     }
     
