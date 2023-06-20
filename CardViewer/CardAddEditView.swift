@@ -166,6 +166,7 @@ struct CardAddEditView: View {
             }
             .sheet(isPresented: $model.isShowingCamera) {
                 ImagePicker(selectedImage: $model.image)
+                CustomCameraView(capturedImage: $model.image)
             }
         }
     }
