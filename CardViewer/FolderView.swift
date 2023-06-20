@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CardView: View {
     var card: Card
+    @State var isShowingFront = true
     
     var body: some View {
         NavigationStack {
@@ -28,11 +29,17 @@ struct CardView: View {
                     Spacer()
                     Text(card.position)
                     Spacer()
-                    if let frontData = card.frontImageData {
-                        Image(uiImage: UIImage(data: card.frontImageData!)!)
+                    if let _ = card.frontImageData {
+                        Image(uiImage: isShowingFront ? UIImage(data: card.frontImageData!)! : UIImage(data: card.backImageData!)!)
                             .resizable()
                             .frame(width: 150, height: 200)
                             .aspectRatio(contentMode: .fit)
+                            .onTapGesture {
+                                withAnimation {
+                                    isShowingFront.toggle()
+                                }
+                            }
+                            .rotation3DEffect(.degrees(isShowingFront ? 0.0 : 180.0), axis: (x: 0, y: 1, z: 0))
                     } else {
                         Text("No images found!")
                             .font(.title3)

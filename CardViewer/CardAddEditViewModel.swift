@@ -37,17 +37,20 @@ class CardAddEditViewModel: ObservableObject {
     }
     
     func change(newValue: [PhotosPickerItem]) {
-        DispatchQueue.main.async {
             guard let item1 = self.selectedPhotos.first else { return }
+            
             self.getDataFromSelectedPhoto(item: item1) { result in
-                self.card.frontImageData = result
+                DispatchQueue.main.async {
+                    self.card.frontImageData = result
+                }
             }
             
             guard self.selectedPhotos.count >= 2 else { return }
             self.getDataFromSelectedPhoto(item: self.selectedPhotos[1]) { result in
-                self.card.backImageData = result
+                DispatchQueue.main.async {
+                    self.card.backImageData = result
+                }
             }
-        }
     }
     
     func changeForUIImage(newValue: UIImage) {
