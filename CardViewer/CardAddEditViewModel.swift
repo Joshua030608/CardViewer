@@ -8,6 +8,11 @@
 import SwiftUI
 import PhotosUI
 
+enum CardSide {
+    case front
+    case back
+}
+
 
 class CardAddEditViewModel: ObservableObject {
     @Published var selectedPhotos: [PhotosPickerItem] = []
@@ -54,11 +59,15 @@ class CardAddEditViewModel: ObservableObject {
             }
     }
     
-    func changeForUIImage(newValue: UIImage?) {
+    func changeForUIImage(newValue: UIImage?, sideOfCard: CardSide) {
         if let data = newValue?.pngData() {
             DispatchQueue.main.async {
-                self.card.frontImageData = data
-                self.card.backImageData
+                switch sideOfCard {
+                case .front:
+                    self.card.frontImageData = data
+                case .back:
+                    self.card.backImageData = data
+                }
             }
         }
     }

@@ -34,7 +34,9 @@ struct CameraView: UIViewControllerRepresentable {
         Coordinator(self, didFinishProcessingPhoto: didFinishProcessingPhoto)
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {  }
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        
+    }
     
     class Coordinator: NSObject, AVCapturePhotoCaptureDelegate {
         let parent: CameraView

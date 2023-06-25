@@ -35,13 +35,20 @@ struct CustomCameraView: View {
             }
             VStack {
                 Spacer()
-                Button {
-                    cameraService.capturePhoto()
-                    presentationMode.isPresented.toggle()
-                } label: {
-                    Image(systemName: "circle")
-                        .font(.system(size: 72))
-                        .foregroundColor(.white)
+                HStack {
+                    if let image = capturedImage1 {
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                    }
+                    Button {
+                        cameraService.capturePhoto()
+                        //presentationMode
+                    } label: {
+                        Image(systemName: "circle")
+                            .font(.system(size: 72))
+                            .foregroundColor(.white)
+                    }
                 }
                 .padding(.bottom)
             }
