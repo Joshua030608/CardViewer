@@ -104,13 +104,13 @@ struct CardAddEditView: View {
                 }.padding(15)
                 Spacer()
             }
-            .onChange(of: model.image, perform: { newValue in
-                model.changeForUIImage(newValue: newValue)
+            .onChange(of: model.selectedPhotos, perform: { newValue in
+                model.change(newValue: newValue)
                 model.isShowingPhotoOptions = false
                 model.isShowingCamera = false
             })
-            .onChange(of: model.selectedPhotos, perform: { newValue in
-                model.change(newValue: newValue)
+            .onChange(of: model.image, perform: { newValue in
+                model.changeForUIImage(newValue: newValue)
                 model.isShowingPhotoOptions = false
                 model.isShowingCamera = false
             })
@@ -165,7 +165,7 @@ struct CardAddEditView: View {
                 }
             }
             .sheet(isPresented: $model.isShowingCamera) {
-                ImagePicker(selectedImage: $model.image)
+                //ImagePicker(selectedImage: $model.image)
                 CustomCameraView(capturedImage: $model.image)
             }
         }

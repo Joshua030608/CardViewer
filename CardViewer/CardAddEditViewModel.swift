@@ -13,7 +13,8 @@ class CardAddEditViewModel: ObservableObject {
     @Published var selectedPhotos: [PhotosPickerItem] = []
     @Published var isShowingPhotoOptions = false
     @Published var isShowingCamera = false
-    @Published var image = UIImage()
+    @Published var image1: UIImage?
+    @Published var image2: UIImage?
     var folderStore: FolderStore
     let folder: Folder
     @Published var card: Card
@@ -53,8 +54,8 @@ class CardAddEditViewModel: ObservableObject {
             }
     }
     
-    func changeForUIImage(newValue: UIImage) {
-        if let data = newValue.pngData() {
+    func changeForUIImage(newValue: UIImage?) {
+        if let data = newValue?.pngData() {
             DispatchQueue.main.async {
                 self.card.frontImageData = data
                 self.card.backImageData
