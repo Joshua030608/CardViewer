@@ -3,4 +3,54 @@
    uuid = "EBA86A6F-EE6B-4C35-B51F-66876790AAE1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9E764AB-66DE-45FF-8502-D433EC0B5A78"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CardViewer/CameraService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "delegate"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "E9E764AB-66DE-45FF-8502-D433EC0B5A78 - 4da86367ee0bb20f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CardViewer.CameraService.init() -&gt; CardViewer.CameraService"
+                  moduleName = "CardViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshuaford/Documents/CardViewer/CardViewer/CameraService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "E9E764AB-66DE-45FF-8502-D433EC0B5A78 - 69f285719bd69422"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CardViewer.CameraService.delegate.didset : Swift.Optional&lt;__C.AVCapturePhotoCaptureDelegate&gt;"
+                  moduleName = "CardViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshuaford/Documents/CardViewer/CardViewer/CameraService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "680">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

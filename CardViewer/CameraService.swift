@@ -8,10 +8,18 @@
 import Foundation
 import AVFoundation
 
-class CameraService {
+class CameraService: ObservableObject {
     
     var session: AVCaptureSession?
-    var delegate: AVCapturePhotoCaptureDelegate?
+    var delegate: AVCapturePhotoCaptureDelegate? {
+        didSet {
+            print(#function, delegate == nil)
+            if delegate == nil {
+                print("delegate is nil")
+                
+            }
+        }
+    }
     
     let output = AVCapturePhotoOutput()
     let previewLayer = AVCaptureVideoPreviewLayer()

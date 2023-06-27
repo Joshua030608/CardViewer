@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomCameraView: View {
     
-    let cameraService = CameraService()
+    @StateObject var cameraService = CameraService()
     @Binding var capturedImage1: UIImage?
     @Binding var capturedImage2: UIImage?
 
@@ -40,7 +40,9 @@ struct CustomCameraView: View {
                         Image(uiImage: image)
                             .resizable()
                             .frame(width: 50, height: 50)
+                            .padding(15)
                     }
+                    Spacer()
                     Button {
                         cameraService.capturePhoto()
                         //presentationMode
@@ -48,6 +50,12 @@ struct CustomCameraView: View {
                         Image(systemName: "circle")
                             .font(.system(size: 72))
                             .foregroundColor(.white)
+                    }
+                    Spacer()
+                    if let image = capturedImage1 {
+                        Color.clear
+                            .frame(width: 50, height: 50)
+                            .padding(15)
                     }
                 }
                 .padding(.bottom)
