@@ -110,12 +110,17 @@ struct CardAddEditView: View {
                 model.isShowingCamera = false
             })
             .onChange(of: model.image1, perform: { newValue in
-                model.changeForUIImage(newValue: newValue, sideOfCard: .front)
+                if let _ = model.image1 {
+                    model.changeForUIImage(newValue: newValue, sideOfCard: .front)
+                }
             })
             .onChange(of: model.image2, perform: { newValue in
-                model.changeForUIImage(newValue: newValue, sideOfCard: .back)
-                model.isShowingPhotoOptions = false
-                model.isShowingCamera = false
+                if let _ = model.image1 {
+                    model.changeForUIImage(newValue: newValue, sideOfCard: .back)
+                    model.isShowingPhotoOptions = false
+                    model.isShowingCamera = false
+                    model.isShowingPreviewView = true
+                }
             })
             .sheet(isPresented: $model.isShowingPhotoOptions) {
                 VStack {
@@ -160,7 +165,7 @@ struct CardAddEditView: View {
                             model.saveCardToFolder()
                             moveBackToCollection = true
                         } else {
-                            print("properties not updated so didn't save")
+                            model.isShowingAlert = true
                         }
                     } label: {
                         Text("Save")
@@ -170,6 +175,19 @@ struct CardAddEditView: View {
             .sheet(isPresented: $model.isShowingCamera) {
                 //ImagePicker(selectedImage: $model.image)
                 CustomCameraView(capturedImage1: $model.image1, capturedImage2: $model.image2)
+            }
+            .alert("Make Sure To Include A Name, Team, And Position Before Saving!", isPresented: $model.isShowingAlert) {
+                Button("Ok", role: .cancel) { }
+            }
+            .sheet(isPresented: $model.isShowingPreviewView) {
+                PreviewView(frontImage: model.image1!, backImage: model.image2!, retakeHandler: {
+                    model.image1 = nil
+                    model.image2 = nil
+                    model.isShowingCamera = true
+                    model.isShowingPreviewView = false
+                }, confirmHandler: {
+                    model.isShowingPreviewView = false
+                })
             }
         }
     }

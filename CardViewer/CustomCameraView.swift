@@ -52,7 +52,7 @@ struct CustomCameraView: View {
                             .foregroundColor(.white)
                     }
                     Spacer()
-                    if let image = capturedImage1 {
+                    if let _ = capturedImage1 {
                         Color.clear
                             .frame(width: 50, height: 50)
                             .padding(15)

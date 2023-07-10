@@ -18,6 +18,8 @@ class CardAddEditViewModel: ObservableObject {
     @Published var selectedPhotos: [PhotosPickerItem] = []
     @Published var isShowingPhotoOptions = false
     @Published var isShowingCamera = false
+    @Published var isShowingPreviewView = false
+    @Published var isShowingAlert = false
     @Published var image1: UIImage?
     @Published var image2: UIImage?
     var folderStore: FolderStore

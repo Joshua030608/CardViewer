@@ -11,6 +11,7 @@
 		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
 		025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */; };
 		02602F7C2A1D82F60083EA8C /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02602F7B2A1D82F60083EA8C /* FolderListView.swift */; };
+		026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026579AE2A5C84FB000A0C9C /* PreviewView.swift */; };
 		027F88492A412D4200216E60 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F88482A412D4200216E60 /* CameraService.swift */; };
 		027F884B2A4131FD00216E60 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884A2A4131FD00216E60 /* CameraView.swift */; };
 		027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884C2A4216A500216E60 /* CustomCameraView.swift */; };
@@ -31,6 +32,7 @@
 		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
 		025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		02602F7B2A1D82F60083EA8C /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
+		026579AE2A5C84FB000A0C9C /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		027F88482A412D4200216E60 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		027F884A2A4131FD00216E60 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		027F884C2A4216A500216E60 /* CustomCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				02C9862A29C1361300CB87A0 /* CardViewerApp.swift */,
 				02C9862C29C1361300CB87A0 /* ContentView.swift */,
 				02373CB329CD168B00305ADD /* FolderView.swift */,
+				026579AE2A5C84FB000A0C9C /* PreviewView.swift */,
 				02602F7B2A1D82F60083EA8C /* FolderListView.swift */,
 				02AA29992A09CC9700E3C7B9 /* CardInfoView.swift */,
 				02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */,
@@ -182,6 +185,7 @@
 				027F884B2A4131FD00216E60 /* CameraView.swift in Sources */,
 				02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */,
 				025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */,
+				026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */,
 				02AA299A2A09CC9700E3C7B9 /* CardInfoView.swift in Sources */,
 				027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */,
 				02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */,
