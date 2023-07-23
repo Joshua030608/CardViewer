@@ -27,6 +27,17 @@ class CardAddEditViewModel: ObservableObject {
     @Published var card: Card
     let isEditing: Bool
     
+    func retakeHandler() {
+        image1 = nil
+        image2 = nil
+        isShowingCamera = true
+        isShowingPreviewView = false
+    }
+    
+    func confirmHandler() {
+        isShowingPreviewView = false
+    }
+    
     fileprivate func getDataFromSelectedPhoto(item: PhotosPickerItem, completion: @escaping (Data) -> ()) {
         
          item.loadTransferable(type: Data.self) { result in

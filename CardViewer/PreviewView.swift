@@ -35,9 +35,7 @@ struct PreviewView: View {
                     .aspectRatio(contentMode: .fit)
                     .padding(15)
             }
-            Button {
-                retakeHandler()
-            } label: {
+            Button(action: retakeHandler) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.blue)
@@ -48,9 +46,7 @@ struct PreviewView: View {
                 }
             }.padding(15)
             
-            Button {
-                confirmHandler()
-            } label: {
+            Button(action: confirmHandler) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.blue)

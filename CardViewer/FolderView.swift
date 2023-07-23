@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CardView: View {
     var card: Card
-    @State var isShowingFront = true
+    @State private var isShowingFront = true
     @State private var flipped = false
     @State private var animate3d = false
     
@@ -60,6 +60,7 @@ struct CardView: View {
                                 .frame(width: 150, height: 200)
                                 .aspectRatio(contentMode: .fit)
                                 .opacity(flipped ? 1.0 : 0.0)
+                            
                         }.modifier(FlipEffect(flipped: $flipped, angle: animate3d ? 180 : 0, axis: (x: 0, y: 1)))
                             .onTapGesture {
                                 withAnimation(Animation.linear(duration: 0.3)) {
@@ -85,7 +86,10 @@ struct CardView: View {
 struct FlipEffect: GeometryEffect {
     
     var animatableData: Double {
-        get { angle }
+        get {
+            print("got animatableData")
+            return angle
+        }
         set { angle = newValue }
     }
     
@@ -116,8 +120,8 @@ struct FlipEffect: GeometryEffect {
 
 struct FolderView: View {
     
-    let folderStore: FolderStore
-    let folder: Folder
+    @ObservedObject var folderStore: FolderStore
+    @ObservedObject var folder: Folder
     
     @State private var folderAddEditIsShowing = false
     @State private var newFolderName = ""
@@ -139,7 +143,10 @@ struct FolderView: View {
                     List {
                         ForEach(cards) { card in
                             CardView(card: card)
-                        }
+                        }.onDelete(perform: folder.deleteCard)
+                    }
+                    .toolbar {
+                        EditButton()
                     }
                     .opacity(cards.isEmpty ? 0.0 : 1.0)
                     Text("No Cards Have Been Added!")

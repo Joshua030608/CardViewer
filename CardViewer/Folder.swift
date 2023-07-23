@@ -49,7 +49,6 @@ class Folder: Identifiable, Codable, ObservableObject, Hashable {
     }
     //This init is used in FolderStore load folders func, probably not needed in future
     
-    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
@@ -66,5 +65,9 @@ class Folder: Identifiable, Codable, ObservableObject, Hashable {
         try container.encode(league, forKey: .league)
     }
     //Not sure if these are neccessary here. I think these should be in folderStore but idk
+    
+    func deleteCard(indices: IndexSet) {
+        Array<Int>(indices).reversed().forEach { cards.remove(at: $0) }
+    }
 }
 

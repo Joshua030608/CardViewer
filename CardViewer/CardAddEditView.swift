@@ -180,14 +180,12 @@ struct CardAddEditView: View {
                 Button("Ok", role: .cancel) { }
             }
             .sheet(isPresented: $model.isShowingPreviewView) {
-                PreviewView(frontImage: model.image1!, backImage: model.image2!, retakeHandler: {
-                    model.image1 = nil
-                    model.image2 = nil
-                    model.isShowingCamera = true
-                    model.isShowingPreviewView = false
-                }, confirmHandler: {
-                    model.isShowingPreviewView = false
-                })
+                PreviewView(
+                    frontImage: model.image1!,
+                    backImage: model.image2!,
+                    retakeHandler: model.retakeHandler,
+                    confirmHandler: model.confirmHandler
+                )
             }
         }
     }
