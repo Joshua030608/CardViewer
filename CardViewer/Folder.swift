@@ -66,8 +66,9 @@ class Folder: Identifiable, Codable, ObservableObject, Hashable {
     }
     //Not sure if these are neccessary here. I think these should be in folderStore but idk
     
-    func deleteCard(indices: IndexSet) {
+    func deleteCard(indices: IndexSet, folderStore: FolderStore) {
         Array<Int>(indices).reversed().forEach { cards.remove(at: $0) }
+        folderStore.save(folder: self)
     }
 }
 

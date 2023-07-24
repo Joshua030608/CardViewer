@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let folderStore: FolderStore
+    private let folderStore: FolderStore
     var body: some View {
         NavigationStack {
             

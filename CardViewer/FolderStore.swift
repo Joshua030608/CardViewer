@@ -16,6 +16,7 @@ class FolderStore: ObservableObject {
             if folder1.id == folder.id {
                 //overwrite previous folder
                 folders[index] = folder
+                self.saveFolders()
                 return
             }
         }

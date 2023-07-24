@@ -143,7 +143,9 @@ struct FolderView: View {
                     List {
                         ForEach(cards) { card in
                             CardView(card: card)
-                        }.onDelete(perform: folder.deleteCard)
+                        }.onDelete { indexSet in
+                            folder.deleteCard(indices: indexSet, folderStore: folderStore)
+                        }
                     }
                     .toolbar {
                         EditButton()

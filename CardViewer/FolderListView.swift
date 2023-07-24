@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct FolderListView: View {
-    let folderStore: FolderStore
+    @State private var folderStore: FolderStore
     @State private var folderAddEditIsShowing = false
     @State private var newFolderName = ""
     @State private var newFolderLeague: League = .NFL
     @State private var newFolderCards: [Card] = []
+    @State private var refresh = false
+    
+    
+    init(folderStore: FolderStore) {
+        self.folderStore = folderStore
+    }
     
     var body: some View {
         NavigationStack{
@@ -51,7 +57,13 @@ struct FolderListView: View {
                         .font(.largeTitle)
                 }
             }
-        }.sheet(isPresented: $folderAddEditIsShowing, content: {
+        }
+        .onAppear(perform: {
+            refresh.toggle()
+            print("refresh toggled")
+            print("\(folderStore.folders.first!.cards.count)")
+        })
+        .sheet(isPresented: $folderAddEditIsShowing, content: {
             VStack {
                 TextField("Name", text: $newFolderName)
                     .textFieldStyle(.roundedBorder)
