@@ -90,7 +90,9 @@ struct FlipEffect: GeometryEffect {
             print("got animatableData")
             return angle
         }
-        set { angle = newValue }
+        set { angle = newValue
+            print(newValue)
+        }
     }
     
     @Binding var flipped: Bool
@@ -99,6 +101,8 @@ struct FlipEffect: GeometryEffect {
 
     func effectValue(size: CGSize) -> ProjectionTransform {
 
+        print(#function)
+        
         DispatchQueue.main.async {
                 self.flipped = self.angle >= 90 && self.angle < 270
         }

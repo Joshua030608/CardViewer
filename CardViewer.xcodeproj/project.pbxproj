@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021AC4FF2A7096AA00BF54F4 /* FolderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */; };
 		02373CB429CD168B00305ADD /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* FolderView.swift */; };
 		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
 		025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoView.swift; sourceTree = "<group>"; };
 		02373CB329CD168B00305ADD /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
 		025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				02373CB329CD168B00305ADD /* FolderView.swift */,
 				026579AE2A5C84FB000A0C9C /* PreviewView.swift */,
 				02602F7B2A1D82F60083EA8C /* FolderListView.swift */,
+				021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */,
 				02AA29992A09CC9700E3C7B9 /* CardInfoView.swift */,
 				02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */,
 				025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */,
@@ -182,6 +185,7 @@
 			files = (
 				02373CB429CD168B00305ADD /* FolderView.swift in Sources */,
 				02C9862D29C1361300CB87A0 /* ContentView.swift in Sources */,
+				021AC4FF2A7096AA00BF54F4 /* FolderInfoView.swift in Sources */,
 				027F884B2A4131FD00216E60 /* CameraView.swift in Sources */,
 				02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */,
 				025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */,

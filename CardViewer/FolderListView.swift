@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FolderListView: View {
-    @State private var folderStore: FolderStore
+    @ObservedObject var folderStore: FolderStore
     @State private var folderAddEditIsShowing = false
     @State private var newFolderName = ""
     @State private var newFolderLeague: League = .NFL

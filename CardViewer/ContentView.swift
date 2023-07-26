@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let folderStore: FolderStore
+    @StateObject private var folderStore: FolderStore
     var body: some View {
         NavigationStack {
             
@@ -36,7 +36,7 @@ struct ContentView: View {
         }
     }
     init(folderStore: FolderStore) {
-        self.folderStore = folderStore
+        self._folderStore = StateObject(wrappedValue: folderStore)
     }
 }
 

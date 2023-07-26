@@ -13,29 +13,43 @@ struct CardAddEditImageView: View {
     let frontData: Data?
     let backData: Data?
     
+    var images: [UIImage] {
+        
+        var images: [UIImage] = []
+        
+        if let data = frontData, let uiImage = UIImage(data: data) {
+            images.append(uiImage)
+        }
+        
+        if let backData = backData, let backuiImage = UIImage(data: backData) {
+            images.append(backuiImage)
+        }
+        
+        return images
+        
+    }
+    
     init(frontData: Data?, backData: Data?) {
         self.frontData = frontData
         self.backData = backData
     }
     
     var body: some View {
-        HStack {
-            Spacer()
-            if let data = frontData, let uiImage = UIImage(data: data) {
-                Image(uiImage: uiImage)
+        List {
+            ForEach(0..<images.count, id: \.self) { image in
+                Image(uiImage: image)
                     .resizable()
                     .frame(width: 150, height: 150)
                     .padding(10)
-                if let backData = backData, let backuiImage = UIImage(data: backData) {
-                    Image(uiImage: backuiImage)
-                        .resizable()
-                        .frame(width: 150, height: 150)
-                        .padding(10)
-                }
-            }
-            Spacer()
+            }.onMove(perform: move)
         }
     }
+    
+    func move(fromOffsets source: IndexSet, toOffset destination: Int) {
+        print(source)
+        print(destination)
+    }
+    
 }
 
 struct CardAddEditView: View {
