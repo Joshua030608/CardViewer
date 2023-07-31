@@ -46,9 +46,14 @@ struct FolderListView: View {
                                     .font(.title)
                             }
                         }
-                    }/*.navigationDestination(for: Folder.self) { folder in
+                    }
+                    .onDelete(perform: folderStore.deleteFolder)
+                    /*.navigationDestination(for: Folder.self) { folder in
                         FolderView(folderStore: folderStore)
                     } */
+                }
+                .toolbar {
+                    EditButton()
                 }
                 Button {
                     folderAddEditIsShowing = true
@@ -61,7 +66,6 @@ struct FolderListView: View {
         .onAppear(perform: {
             refresh.toggle()
             print("refresh toggled")
-            print("\(folderStore.folders.first!.cards.count)")
         })
         .sheet(isPresented: $folderAddEditIsShowing, content: {
             VStack {

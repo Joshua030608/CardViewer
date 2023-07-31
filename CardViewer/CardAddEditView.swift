@@ -8,48 +8,95 @@
 import SwiftUI
 import PhotosUI
 
+class IDImage: Identifiable, Equatable {
+    static func == (lhs: IDImage, rhs: IDImage) -> Bool {
+        return lhs.image == rhs.image && lhs.id == rhs.id
+    }
+    
+    let image: UIImage
+    let id: UUID
+    
+    init(image: UIImage, id: UUID = UUID()) {
+        self.image = image
+        self.id = id
+    }
+}
+
 struct CardAddEditImageView: View {
     
     let frontData: Data?
     let backData: Data?
+    @State var draggedItem: IDImage?
     
-    var images: [UIImage] {
-        
-        var images: [UIImage] = []
-        
-        if let data = frontData, let uiImage = UIImage(data: data) {
-            images.append(uiImage)
-        }
-        
-        if let backData = backData, let backuiImage = UIImage(data: backData) {
-            images.append(backuiImage)
-        }
-        
-        return images
-        
-    }
+    @State var images: [IDImage] = []
     
     init(frontData: Data?, backData: Data?) {
         self.frontData = frontData
         self.backData = backData
+        
+        var images1: [IDImage] = []
+        
+        if let data = frontData, let uiImage = UIImage(data: data) {
+            let idImage = IDImage(image: uiImage)
+            images1.append(idImage)
+        }
+        
+        if let backData = backData, let backuiImage = UIImage(data: backData) {
+            let backIDImage = IDImage(image: backuiImage)
+            images1.append(backIDImage)
+        }
+        
+        self.images = images1
+        print(#function + "\(images1.count) images")
+        print(#function + "\(self.images.count) images")
     }
     
     var body: some View {
-        List {
+        /*List {
             ForEach(0..<images.count, id: \.self) { image in
                 Image(uiImage: image)
                     .resizable()
                     .frame(width: 150, height: 150)
                     .padding(10)
             }.onMove(perform: move)
+        }*/
+        LazyHStack(spacing: 15) {
+            ForEach(images) { image in
+                Image(uiImage: image.image)
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .onDrag({
+                        self.draggedItem = image
+                        return NSItemProvider(item: nil, typeIdentifier: image.id.uuidString)
+                    })
+                    .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: image, items: $images, draggedItem: $draggedItem))
+            }
         }
     }
+}
+
+struct MyDropDelegate: DropDelegate {
+    let item: IDImage
+    @Binding var items: [IDImage]
+    @Binding var draggedItem: IDImage?
     
-    func move(fromOffsets source: IndexSet, toOffset destination: Int) {
-        print(source)
-        print(destination)
+    func performDrop(info: DropInfo) -> Bool {
+        return true
     }
     
+    func dropEntered(info: DropInfo) {
+        guard let draggedItem = self.draggedItem else {
+            return
+        }
+        
+        if draggedItem != item {
+            let from = items.firstIndex(of: draggedItem)!
+            let to = items.firstIndex(of: item)!
+            withAnimation(.default) {
+                self.items.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
+            }
+        }
+    }
 }
 
 struct CardAddEditView: View {
