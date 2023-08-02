@@ -21,46 +21,44 @@ struct FolderListView: View {
     }
     
     var body: some View {
-        NavigationStack{
-            VStack {
-                List {
-                    ForEach(folderStore.folders) { folder in
-                        /*
-                        NavigationLink(value: folder) {
-                            HStack {
-                                Text("Name: " + folder.name)
-                                    .font(.largeTitle)
-                                Text("League: " + folder.league.rawValue)
-                                    .font(.title)
-                                Text("# of Cards: " + String(folder.cards.count))
-                                    .font(.title)
-                            }
-                        } */
-                        NavigationLink(destination: FolderView(folderStore: folderStore, folder: folder)) {
-                            HStack {
-                                Text("Name: " + folder.name)
-                                    .font(.largeTitle)
-                                Text("League: " + folder.league.rawValue)
-                                    .font(.title)
-                                Text("# of Cards: " + String(folder.cards.count))
-                                    .font(.title)
-                            }
+        VStack {
+            List {
+                ForEach(folderStore.folders) { folder in
+                    /*
+                    NavigationLink(value: folder) {
+                        HStack {
+                            Text("Name: " + folder.name)
+                                .font(.largeTitle)
+                            Text("League: " + folder.league.rawValue)
+                                .font(.title)
+                            Text("# of Cards: " + String(folder.cards.count))
+                                .font(.title)
+                        }
+                    } */
+                    NavigationLink(destination: FolderView(folderStore: folderStore, folder: folder)) {
+                        HStack {
+                            Text("Name: " + folder.name)
+                                .font(.largeTitle)
+                            Text("League: " + folder.league.rawValue)
+                                .font(.title)
+                            Text("# of Cards: " + String(folder.cards.count))
+                                .font(.title)
                         }
                     }
-                    .onDelete(perform: folderStore.deleteFolder)
-                    /*.navigationDestination(for: Folder.self) { folder in
-                        FolderView(folderStore: folderStore)
-                    } */
                 }
-                .toolbar {
-                    EditButton()
-                }
-                Button {
-                    folderAddEditIsShowing = true
-                } label: {
-                    Text("Add Folder")
-                        .font(.largeTitle)
-                }
+                .onDelete(perform: folderStore.deleteFolder)
+                /*.navigationDestination(for: Folder.self) { folder in
+                    FolderView(folderStore: folderStore)
+                } */
+            }
+            .toolbar {
+                EditButton()
+            }
+            Button {
+                folderAddEditIsShowing = true
+            } label: {
+                Text("Add Folder")
+                    .font(.largeTitle)
             }
         }
         .onAppear(perform: {

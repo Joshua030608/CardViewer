@@ -9,13 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var folderStore: FolderStore
+    @EnvironmentObject var navigationModel: NavigationModel
     var body: some View {
-        NavigationStack {
-            
+        NavigationStack(path: $navigationModel.navigationPath) {
             ZStack {
                 Color.red
                     .ignoresSafeArea()
                 VStack {
+                    Button {
+                        navigationModel.navigationPath.append("Hello World")
+                    } label: {
+                        Text("Add to Path")
+                    }
+
                     Image(systemName: "globe")
                         .resizable()
                         .frame(maxWidth: 100, maxHeight: 100)
@@ -32,6 +38,8 @@ struct ContentView: View {
                     }
                     .padding()
                 }
+            }.navigationDestination(for: String.self) { string in
+                Text(string)
             }
         }
     }

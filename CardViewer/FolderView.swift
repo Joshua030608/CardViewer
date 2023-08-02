@@ -15,68 +15,66 @@ struct CardView: View {
     @State private var animate3d = false
     
     var body: some View {
-        NavigationStack {
-            NavigationLink {
-                CardInfoView(card: card)
-            } label: {
-                HStack {
-                    VStack {
-                        Text(card.playerName)
-                        Text(card.team)
-                        if card.playerName == "" {
-                            Text("No name")
-                                .font(.title2)
-                        }
+        NavigationLink {
+            CardInfoView(card: card)
+        } label: {
+            HStack {
+                VStack {
+                    Text(card.playerName)
+                    Text(card.team)
+                    if card.playerName == "" {
+                        Text("No name")
+                            .font(.title2)
                     }
-                    Spacer()
-                    Text(card.position)
-                    Spacer()
-                    /*if let _ = card.frontImageData {
-                        Image(uiImage: isShowingFront ? UIImage(data: card.frontImageData!)! : UIImage(data: card.backImageData!)!)
-                            .resizable()
-                            .frame(width: 150, height: 200)
-                            .aspectRatio(contentMode: .fit)
-                            .onTapGesture {
-                                withAnimation {
-                                    isShowingFront.toggle()
-                                }
+                }
+                Spacer()
+                Text(card.position)
+                Spacer()
+                /*if let _ = card.frontImageData {
+                    Image(uiImage: isShowingFront ? UIImage(data: card.frontImageData!)! : UIImage(data: card.backImageData!)!)
+                        .resizable()
+                        .frame(width: 150, height: 200)
+                        .aspectRatio(contentMode: .fit)
+                        .onTapGesture {
+                            withAnimation {
+                                isShowingFront.toggle()
                             }
-                            .rotation3DEffect(.degrees(isShowingFront ? 0.0 : 180.0), axis: (x: 0, y: 1, z: 0))
-                    } else {
-                        Text("No images found!")
-                            .font(.title3)
-                    } */
-                    
-                    if card.frontImageData != nil && card.backImageData != nil {
-                        ZStack {
-                            Image(uiImage: UIImage(data: card.frontImageData!)!)
-                                .resizable()
-                                .frame(width: 150, height: 200)
-                                .aspectRatio(contentMode: .fit)
-                                .opacity(flipped ? 0.0 : 1.0)
-                            
-                            Image(uiImage: UIImage(data: card.backImageData!)!)
-                                .resizable()
-                                .frame(width: 150, height: 200)
-                                .aspectRatio(contentMode: .fit)
-                                .opacity(flipped ? 1.0 : 0.0)
-                            
-                        }.modifier(FlipEffect(flipped: $flipped, angle: animate3d ? 180 : 0, axis: (x: 0, y: 1)))
-                            .onTapGesture {
-                                withAnimation(Animation.linear(duration: 0.3)) {
-                                    self.animate3d.toggle()
-                                }
-                            }
-                        
-                    } else if card.frontImageData != nil {
+                        }
+                        .rotation3DEffect(.degrees(isShowingFront ? 0.0 : 180.0), axis: (x: 0, y: 1, z: 0))
+                } else {
+                    Text("No images found!")
+                        .font(.title3)
+                } */
+                
+                if card.frontImageData != nil && card.backImageData != nil {
+                    ZStack {
                         Image(uiImage: UIImage(data: card.frontImageData!)!)
                             .resizable()
                             .frame(width: 150, height: 200)
                             .aspectRatio(contentMode: .fit)
-                    } else {
-                        Text("No Images Found!")
-                            .font(.title3)
-                    }
+                            .opacity(flipped ? 0.0 : 1.0)
+                        
+                        Image(uiImage: UIImage(data: card.backImageData!)!)
+                            .resizable()
+                            .frame(width: 150, height: 200)
+                            .aspectRatio(contentMode: .fit)
+                            .opacity(flipped ? 1.0 : 0.0)
+                        
+                    }.modifier(FlipEffect(flipped: $flipped, angle: animate3d ? 180 : 0, axis: (x: 0, y: 1)))
+                        .onTapGesture {
+                            withAnimation(Animation.linear(duration: 0.3)) {
+                                self.animate3d.toggle()
+                            }
+                        }
+                    
+                } else if card.frontImageData != nil {
+                    Image(uiImage: UIImage(data: card.frontImageData!)!)
+                        .resizable()
+                        .frame(width: 150, height: 200)
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    Text("No Images Found!")
+                        .font(.title3)
                 }
             }
         }
@@ -141,35 +139,34 @@ struct FolderView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                ZStack {
-                    List {
-                        ForEach(cards) { card in
-                            CardView(card: card)
-                        }.onDelete { indexSet in
-                            folder.deleteCard(indices: indexSet, folderStore: folderStore)
-                        }
+        VStack {
+            ZStack {
+                List {
+                    ForEach(cards) { card in
+                        CardView(card: card)
+                    }.onDelete { indexSet in
+                        folder.deleteCard(indices: indexSet, folderStore: folderStore)
                     }
-                    .toolbar {
-                        EditButton()
-                    }
-                    .opacity(cards.isEmpty ? 0.0 : 1.0)
-                    Text("No Cards Have Been Added!")
-                        .padding(125)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                        .multilineTextAlignment(.center)
-                        .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
-                
-                NavigationLink(destination: CardAddEditView(folderStore: folderStore, folder: folder, card: nil)) {
-                    Text("Add Card")
-                        .font(.largeTitle)
+                .toolbar {
+                    EditButton()
                 }
+                .opacity(cards.isEmpty ? 0.0 : 1.0)
+                Text("No Cards Have Been Added!")
+                    .padding(125)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.blue)
+                    .multilineTextAlignment(.center)
+                    .opacity(cards.isEmpty ? 1.0 : 0.0)
+            }
+            
+            NavigationLink(destination: CardAddEditView(folderStore: folderStore, folder: folder, card: nil)) {
+                Text("Add Card")
+                    .font(.largeTitle)
             }
         }
+    }
         /*.sheet(isPresented: $folderAddEditIsShowing, content: {
             VStack {
                 TextField("Name", text: $newFolderName)
@@ -201,7 +198,6 @@ struct FolderView: View {
 
             }
         }) */
-    }
 }
 
 //struct CollectionView_Previews: PreviewProvider {
