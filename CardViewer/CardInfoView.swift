@@ -10,8 +10,13 @@ import SwiftUI
 struct CardInfoView: View {
     
     let card: Card
-    @State var moveToCardAddEditView = false
     @EnvironmentObject var folderStore: FolderStore
+    @EnvironmentObject var navigationModel: NavigationModel
+    
+    func moveToCardAddEditView() {
+        navigationModel.currentCard = card
+        navigationModel.navigationPath.append(Views.cardAddEditView)
+    }
     
     var body: some View {
         VStack {
@@ -44,22 +49,11 @@ struct CardInfoView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     print("Edit Button Pressed for Player: " + card.playerName)
-                    moveToCardAddEditView = true
+                    moveToCardAddEditView()
                 } label: {
                     Text("Edit")
                 }
             }
-        }
-        NavigationLink(
-            destination:
-                CardAddEditView(
-                    folderStore: folderStore,
-                    folder: folderStore.folders.first!,
-                    card: card
-                ),
-               isActive: $moveToCardAddEditView
-        ) {
-            EmptyView()
         }
     }
 }

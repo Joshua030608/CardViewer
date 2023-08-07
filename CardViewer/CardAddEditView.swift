@@ -101,14 +101,18 @@ struct MyDropDelegate: DropDelegate {
 
 struct CardAddEditView: View {
     let folderStore: FolderStore
-    
+    @EnvironmentObject var navigationModel: NavigationModel
     @StateObject private var model: CardAddEditViewModel
-    @State private var moveBackToCollection = false
     
     init(folderStore: FolderStore, folder: Folder, card: Card?) {
         self.folderStore = folderStore
         let viewModel = CardAddEditViewModel(folderStore: folderStore, folder: folder, card: card)
         self._model = StateObject(wrappedValue: viewModel)
+    }
+    
+    func moveBackToFolderView() {
+        navigationModel.currentFolder = model.folder
+        navigationModel.navigationPath.removeLast()
     }
     
     var body: some View {
@@ -159,9 +163,6 @@ struct CardAddEditView: View {
                 }
                 
             }
-            NavigationLink(destination: FolderView(folderStore: folderStore, folder: model.folder), isActive: $moveBackToCollection) {
-                EmptyView()
-            }.padding(15)
             Spacer()
         }
         .onChange(of: model.selectedPhotos, perform: { newValue in
@@ -223,7 +224,7 @@ struct CardAddEditView: View {
                     if model.card.playerName != "Name" && model.card.team != "Team" && model.card.position != "Position" {
                         print("save button pressed")
                         model.saveCardToFolder()
-                        moveBackToCollection = true
+                        moveBackToFolderView()
                     } else {
                         model.isShowingAlert = true
                     }

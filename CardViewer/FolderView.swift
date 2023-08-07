@@ -9,26 +9,33 @@ import SwiftUI
 
 
 struct CardView: View {
+    
+    @EnvironmentObject var navigationModel: NavigationModel
     var card: Card
     @State private var isShowingFront = true
     @State private var flipped = false
     @State private var animate3d = false
     
     var body: some View {
-        NavigationLink {
-            CardInfoView(card: card)
+        Button {
+            navigationModel.currentCard = card
+            navigationModel.navigationPath.append(Views.cardInfoView)
         } label: {
             HStack {
                 VStack {
                     Text(card.playerName)
+                        .foregroundColor(.black)
                     Text(card.team)
+                        .foregroundColor(.black)
                     if card.playerName == "" {
                         Text("No name")
                             .font(.title2)
+                            .foregroundColor(.black)
                     }
                 }
                 Spacer()
                 Text(card.position)
+                    .foregroundColor(.black)
                 Spacer()
                 /*if let _ = card.frontImageData {
                     Image(uiImage: isShowingFront ? UIImage(data: card.frontImageData!)! : UIImage(data: card.backImageData!)!)
@@ -75,6 +82,7 @@ struct CardView: View {
                 } else {
                     Text("No Images Found!")
                         .font(.title3)
+                        .foregroundColor(.black)
                 }
             }
         }
@@ -122,6 +130,8 @@ struct FlipEffect: GeometryEffect {
 
 struct FolderView: View {
     
+    
+    @EnvironmentObject var navigationModel: NavigationModel
     @ObservedObject var folderStore: FolderStore
     @ObservedObject var folder: Folder
     
@@ -160,8 +170,11 @@ struct FolderView: View {
                     .multilineTextAlignment(.center)
                     .opacity(cards.isEmpty ? 1.0 : 0.0)
             }
-            
-            NavigationLink(destination: CardAddEditView(folderStore: folderStore, folder: folder, card: nil)) {
+            Button {
+                navigationModel.currentFolder = folder
+                navigationModel.currentCard = nil
+                navigationModel.navigationPath.append(Views.cardAddEditView)
+            } label: {
                 Text("Add Card")
                     .font(.largeTitle)
             }

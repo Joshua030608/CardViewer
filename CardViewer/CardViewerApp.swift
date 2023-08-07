@@ -9,6 +9,8 @@ import SwiftUI
 
 class NavigationModel: ObservableObject {
     @Published var navigationPath = NavigationPath()
+    @Published var currentFolder: Folder?
+    @Published var currentCard: Card?
 }
 
 @main

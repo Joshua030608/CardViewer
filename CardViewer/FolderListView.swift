@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FolderListView: View {
+    
+    @EnvironmentObject var navigationModel: NavigationModel
+    
     @ObservedObject var folderStore: FolderStore
     @State private var folderAddEditIsShowing = false
     @State private var newFolderName = ""
@@ -35,21 +38,25 @@ struct FolderListView: View {
                                 .font(.title)
                         }
                     } */
-                    NavigationLink(destination: FolderView(folderStore: folderStore, folder: folder)) {
+                    Button {
+                        navigationModel.currentFolder = folder
+                        navigationModel.navigationPath.append(Views.folderView)
+                    } label: {
                         HStack {
                             Text("Name: " + folder.name)
                                 .font(.largeTitle)
+                                .foregroundColor(.black)
                             Text("League: " + folder.league.rawValue)
                                 .font(.title)
+                                .foregroundColor(.black)
                             Text("# of Cards: " + String(folder.cards.count))
                                 .font(.title)
+                                .foregroundColor(.black)
                         }
                     }
+
                 }
                 .onDelete(perform: folderStore.deleteFolder)
-                /*.navigationDestination(for: Folder.self) { folder in
-                    FolderView(folderStore: folderStore)
-                } */
             }
             .toolbar {
                 EditButton()

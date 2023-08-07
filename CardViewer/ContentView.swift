@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+enum Views: String {
+    case contentView = "ContentView"
+    case folderListView = "FolderListView"
+    case folderView = "FolderView"
+    case cardAddEditView = "CardAddEditView"
+    case cardInfoView = "CardInfoView"
+}
+
 struct ContentView: View {
     @StateObject private var folderStore: FolderStore
     @EnvironmentObject var navigationModel: NavigationModel
@@ -16,12 +24,12 @@ struct ContentView: View {
                 Color.red
                     .ignoresSafeArea()
                 VStack {
-                    Button {
-                        navigationModel.navigationPath.append("Hello World")
-                    } label: {
-                        Text("Add to Path")
-                    }
-
+                    //                    Button {
+                    //                        navigationModel.navigationPath.append(Views.folderListView)
+                    //                    } label: {
+                    //                        Text("Add to Path")
+                    //                    }
+                    
                     Image(systemName: "globe")
                         .resizable()
                         .frame(maxWidth: 100, maxHeight: 100)
@@ -29,8 +37,8 @@ struct ContentView: View {
                         .font(.largeTitle)
                     Text("CardViewer")
                         .font(.largeTitle)
-                    NavigationLink {
-                        FolderListView(folderStore: folderStore)
+                    Button {
+                        navigationModel.navigationPath.append(Views.folderListView)
                     } label: {
                         Text("Start")
                             .font(.largeTitle)
@@ -38,8 +46,19 @@ struct ContentView: View {
                     }
                     .padding()
                 }
-            }.navigationDestination(for: String.self) { string in
-                Text(string)
+            }.navigationDestination(for: Views.self) { viewsCase in
+                switch viewsCase {
+                case .contentView:
+                    ContentView(folderStore: folderStore)
+                case .folderListView:
+                    FolderListView(folderStore: folderStore)
+                case .folderView:
+                    FolderView(folderStore: folderStore, folder: navigationModel.currentFolder!)
+                case .cardAddEditView:
+                    CardAddEditView(folderStore: folderStore, folder: navigationModel.currentFolder!, card: navigationModel.currentCard)
+                case .cardInfoView:
+                    CardInfoView(card: navigationModel.currentCard!)
+                }
             }
         }
     }
