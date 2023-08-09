@@ -16,6 +16,11 @@
 		027F88492A412D4200216E60 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F88482A412D4200216E60 /* CameraService.swift */; };
 		027F884B2A4131FD00216E60 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884A2A4131FD00216E60 /* CameraView.swift */; };
 		027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884C2A4216A500216E60 /* CustomCameraView.swift */; };
+		0294E77D2A830AEB007E8E7C /* IDImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E77C2A830AEB007E8E7C /* IDImage.swift */; };
+		0294E77F2A830B06007E8E7C /* CardAddEditImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E77E2A830B06007E8E7C /* CardAddEditImageView.swift */; };
+		0294E7812A830B4B007E8E7C /* CardImageDragDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E7802A830B4B007E8E7C /* CardImageDragDropDelegate.swift */; };
+		0294E7892A830DFE007E8E7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E7882A830DFE007E8E7C /* CardView.swift */; };
+		0294E78B2A830E35007E8E7C /* FlipEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E78A2A830E35007E8E7C /* FlipEffect.swift */; };
 		02AA299A2A09CC9700E3C7B9 /* CardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AA29992A09CC9700E3C7B9 /* CardInfoView.swift */; };
 		02BCEC5029D7A22D009AC8EB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCEC4F29D7A22D009AC8EB /* Card.swift */; };
 		02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */; };
@@ -38,6 +43,11 @@
 		027F88482A412D4200216E60 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		027F884A2A4131FD00216E60 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		027F884C2A4216A500216E60 /* CustomCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraView.swift; sourceTree = "<group>"; };
+		0294E77C2A830AEB007E8E7C /* IDImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDImage.swift; sourceTree = "<group>"; };
+		0294E77E2A830B06007E8E7C /* CardAddEditImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddEditImageView.swift; sourceTree = "<group>"; };
+		0294E7802A830B4B007E8E7C /* CardImageDragDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageDragDropDelegate.swift; sourceTree = "<group>"; };
+		0294E7882A830DFE007E8E7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0294E78A2A830E35007E8E7C /* FlipEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipEffect.swift; sourceTree = "<group>"; };
 		02AA29992A09CC9700E3C7B9 /* CardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoView.swift; sourceTree = "<group>"; };
 		02BCEC4F29D7A22D009AC8EB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddEditView.swift; sourceTree = "<group>"; };
@@ -62,6 +72,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0294E7822A830BD7007E8E7C /* StartingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				02C9862C29C1361300CB87A0 /* ContentView.swift */,
+			);
+			path = StartingScreen;
+			sourceTree = "<group>";
+		};
+		0294E7832A830C2D007E8E7C /* Folder */ = {
+			isa = PBXGroup;
+			children = (
+				021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */,
+				02602F7B2A1D82F60083EA8C /* FolderListView.swift */,
+				02EACFA329E6235D001B1D44 /* Folder.swift */,
+				02EACFA529E624A0001B1D44 /* FolderStore.swift */,
+				02373CB329CD168B00305ADD /* FolderView.swift */,
+			);
+			path = Folder;
+			sourceTree = "<group>";
+		};
+		0294E7842A830C8D007E8E7C /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				0294E7852A830CBF007E8E7C /* AddEdit */,
+				02BCEC4F29D7A22D009AC8EB /* Card.swift */,
+				02AA29992A09CC9700E3C7B9 /* CardInfoView.swift */,
+				0294E7882A830DFE007E8E7C /* CardView.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		0294E7852A830CBF007E8E7C /* AddEdit */ = {
+			isa = PBXGroup;
+			children = (
+				0294E7862A830CEA007E8E7C /* Camera */,
+				02EACFA129E60193001B1D44 /* CardAddEditViewModel.swift */,
+				02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */,
+				0294E77E2A830B06007E8E7C /* CardAddEditImageView.swift */,
+				0294E7802A830B4B007E8E7C /* CardImageDragDropDelegate.swift */,
+			);
+			path = AddEdit;
+			sourceTree = "<group>";
+		};
+		0294E7862A830CEA007E8E7C /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */,
+				027F88482A412D4200216E60 /* CameraService.swift */,
+				027F884A2A4131FD00216E60 /* CameraView.swift */,
+				027F884C2A4216A500216E60 /* CustomCameraView.swift */,
+				026579AE2A5C84FB000A0C9C /* PreviewView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		0294E7872A830D46007E8E7C /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				02C9862A29C1361300CB87A0 /* CardViewerApp.swift */,
+				0294E77C2A830AEB007E8E7C /* IDImage.swift */,
+				0294E78A2A830E35007E8E7C /* FlipEffect.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		02C9861E29C1361300CB87A0 = {
 			isa = PBXGroup;
 			children = (
@@ -81,22 +156,10 @@
 		02C9862929C1361300CB87A0 /* CardViewer */ = {
 			isa = PBXGroup;
 			children = (
-				02C9862A29C1361300CB87A0 /* CardViewerApp.swift */,
-				02C9862C29C1361300CB87A0 /* ContentView.swift */,
-				02373CB329CD168B00305ADD /* FolderView.swift */,
-				026579AE2A5C84FB000A0C9C /* PreviewView.swift */,
-				02602F7B2A1D82F60083EA8C /* FolderListView.swift */,
-				021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */,
-				02AA29992A09CC9700E3C7B9 /* CardInfoView.swift */,
-				02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */,
-				025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */,
-				027F88482A412D4200216E60 /* CameraService.swift */,
-				027F884A2A4131FD00216E60 /* CameraView.swift */,
-				027F884C2A4216A500216E60 /* CustomCameraView.swift */,
-				02EACFA129E60193001B1D44 /* CardAddEditViewModel.swift */,
-				02EACFA329E6235D001B1D44 /* Folder.swift */,
-				02EACFA529E624A0001B1D44 /* FolderStore.swift */,
-				02BCEC4F29D7A22D009AC8EB /* Card.swift */,
+				0294E7872A830D46007E8E7C /* Other */,
+				0294E7842A830C8D007E8E7C /* Card */,
+				0294E7832A830C2D007E8E7C /* Folder */,
+				0294E7822A830BD7007E8E7C /* StartingScreen */,
 				02373CB729CD1BDD00305ADD /* Homework.rtf */,
 				02C9862E29C1361400CB87A0 /* Assets.xcassets */,
 				02C9863029C1361400CB87A0 /* Preview Content */,
@@ -183,6 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0294E77F2A830B06007E8E7C /* CardAddEditImageView.swift in Sources */,
+				0294E77D2A830AEB007E8E7C /* IDImage.swift in Sources */,
 				02373CB429CD168B00305ADD /* FolderView.swift in Sources */,
 				02C9862D29C1361300CB87A0 /* ContentView.swift in Sources */,
 				021AC4FF2A7096AA00BF54F4 /* FolderInfoView.swift in Sources */,
@@ -191,9 +256,12 @@
 				025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */,
 				026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */,
 				02AA299A2A09CC9700E3C7B9 /* CardInfoView.swift in Sources */,
+				0294E78B2A830E35007E8E7C /* FlipEffect.swift in Sources */,
 				027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */,
 				02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */,
+				0294E7812A830B4B007E8E7C /* CardImageDragDropDelegate.swift in Sources */,
 				02EACFA229E60193001B1D44 /* CardAddEditViewModel.swift in Sources */,
+				0294E7892A830DFE007E8E7C /* CardView.swift in Sources */,
 				02EACFA629E624A0001B1D44 /* FolderStore.swift in Sources */,
 				027F88492A412D4200216E60 /* CameraService.swift in Sources */,
 				02BCEC5029D7A22D009AC8EB /* Card.swift in Sources */,
