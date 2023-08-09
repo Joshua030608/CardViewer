@@ -45,9 +45,14 @@ struct FolderView: View {
         guard searchString != "" else { return folder.cards }
 
         return folder.cards.filter { card in
-            card.playerName.lowercased().contains(searchString.lowercased()) ||
-            card.team.lowercased().contains(searchString.lowercased()) ||
-            card.position.lowercased().contains(searchString.lowercased())
+            switch searchMode {
+            case .name:
+                return card.playerName.lowercased().contains(searchString.lowercased())
+            case .position:
+                return card.position.lowercased().contains(searchString.lowercased())
+            case .team:
+                return card.team.lowercased().contains(searchString.lowercased())
+            }
         }
     }
     
