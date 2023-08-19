@@ -16,6 +16,11 @@
 		027F88492A412D4200216E60 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F88482A412D4200216E60 /* CameraService.swift */; };
 		027F884B2A4131FD00216E60 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884A2A4131FD00216E60 /* CameraView.swift */; };
 		027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884C2A4216A500216E60 /* CustomCameraView.swift */; };
+		028ABF8A2A903ED700E4A042 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF842A903ED700E4A042 /* HTMLParser.swift */; };
+		028ABF8C2A903ED700E4A042 /* ParsedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF862A903ED700E4A042 /* ParsedDataView.swift */; };
+		028ABF8D2A903ED700E4A042 /* QRScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF872A903ED700E4A042 /* QRScanner.swift */; };
+		028ABF8F2A903ED700E4A042 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF892A903ED700E4A042 /* ScannerView.swift */; };
+		028ABF922A903EF000E4A042 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 028ABF912A903EF000E4A042 /* SwiftSoup */; };
 		0294E77D2A830AEB007E8E7C /* IDImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E77C2A830AEB007E8E7C /* IDImage.swift */; };
 		0294E77F2A830B06007E8E7C /* CardAddEditImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E77E2A830B06007E8E7C /* CardAddEditImageView.swift */; };
 		0294E7812A830B4B007E8E7C /* CardImageDragDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0294E7802A830B4B007E8E7C /* CardImageDragDropDelegate.swift */; };
@@ -43,6 +48,10 @@
 		027F88482A412D4200216E60 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		027F884A2A4131FD00216E60 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		027F884C2A4216A500216E60 /* CustomCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraView.swift; sourceTree = "<group>"; };
+		028ABF842A903ED700E4A042 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
+		028ABF862A903ED700E4A042 /* ParsedDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedDataView.swift; sourceTree = "<group>"; };
+		028ABF872A903ED700E4A042 /* QRScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanner.swift; sourceTree = "<group>"; };
+		028ABF892A903ED700E4A042 /* ScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		0294E77C2A830AEB007E8E7C /* IDImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDImage.swift; sourceTree = "<group>"; };
 		0294E77E2A830B06007E8E7C /* CardAddEditImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddEditImageView.swift; sourceTree = "<group>"; };
 		0294E7802A830B4B007E8E7C /* CardImageDragDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageDragDropDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				028ABF922A903EF000E4A042 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +166,10 @@
 		02C9862929C1361300CB87A0 /* CardViewer */ = {
 			isa = PBXGroup;
 			children = (
+				028ABF892A903ED700E4A042 /* ScannerView.swift */,
+				028ABF842A903ED700E4A042 /* HTMLParser.swift */,
+				028ABF862A903ED700E4A042 /* ParsedDataView.swift */,
+				028ABF872A903ED700E4A042 /* QRScanner.swift */,
 				0294E7872A830D46007E8E7C /* Other */,
 				0294E7842A830C8D007E8E7C /* Card */,
 				0294E7832A830C2D007E8E7C /* Folder */,
@@ -191,6 +205,9 @@
 			dependencies = (
 			);
 			name = CardViewer;
+			packageProductDependencies = (
+				028ABF912A903EF000E4A042 /* SwiftSoup */,
+			);
 			productName = CardViewer;
 			productReference = 02C9862729C1361300CB87A0 /* CardViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -219,6 +236,9 @@
 				Base,
 			);
 			mainGroup = 02C9861E29C1361300CB87A0;
+			packageReferences = (
+				028ABF902A903EF000E4A042 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 02C9862829C1361300CB87A0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,16 +277,20 @@
 				026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */,
 				02AA299A2A09CC9700E3C7B9 /* CardInfoView.swift in Sources */,
 				0294E78B2A830E35007E8E7C /* FlipEffect.swift in Sources */,
+				028ABF8A2A903ED700E4A042 /* HTMLParser.swift in Sources */,
+				028ABF8F2A903ED700E4A042 /* ScannerView.swift in Sources */,
 				027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */,
 				02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */,
 				0294E7812A830B4B007E8E7C /* CardImageDragDropDelegate.swift in Sources */,
 				02EACFA229E60193001B1D44 /* CardAddEditViewModel.swift in Sources */,
 				0294E7892A830DFE007E8E7C /* CardView.swift in Sources */,
 				02EACFA629E624A0001B1D44 /* FolderStore.swift in Sources */,
+				028ABF8C2A903ED700E4A042 /* ParsedDataView.swift in Sources */,
 				027F88492A412D4200216E60 /* CameraService.swift in Sources */,
 				02BCEC5029D7A22D009AC8EB /* Card.swift in Sources */,
 				02EACFA429E6235E001B1D44 /* Folder.swift in Sources */,
 				02602F7C2A1D82F60083EA8C /* FolderListView.swift in Sources */,
+				028ABF8D2A903ED700E4A042 /* QRScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +501,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		028ABF902A903EF000E4A042 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		028ABF912A903EF000E4A042 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 028ABF902A903EF000E4A042 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02C9861F29C1361300CB87A0 /* Project object */;
 }

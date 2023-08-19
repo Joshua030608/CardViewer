@@ -22,6 +22,7 @@ struct FolderView: View {
     @ObservedObject var folder: Folder
     
     @State private var folderAddEditIsShowing = false
+    @State private var isShowingCardAddOptions = false
     @State private var newFolderName = ""
     @State private var newFolderLeague: League = .NFL
     @State private var newFolderCards: [Card] = []
@@ -85,12 +86,22 @@ struct FolderView: View {
                     .opacity(cards.isEmpty ? 1.0 : 0.0)
             }
             Button {
-                navigationModel.currentFolder = folder
-                navigationModel.currentCard = nil
-                navigationModel.navigationPath.append(Views.cardAddEditView)
+                isShowingCardAddOptions = true
             } label: {
                 Text("Add Card")
                     .font(.largeTitle)
+            }
+            .confirmationDialog("Card", isPresented: $isShowingCardAddOptions, titleVisibility: .visible) {
+                Button("Scan Card") {
+                    navigationModel.currentFolder = folder
+                    navigationModel.currentCard = nil
+                    navigationModel.navigationPath.append(Views.scannerView)
+                }
+                Button("Manually Add Card") {
+                    navigationModel.currentFolder = folder
+                    navigationModel.currentCard = nil
+                    navigationModel.navigationPath.append(Views.cardAddEditView)
+                }
             }
         }.toolbar {
             ToolbarItem(placement: .principal) {

@@ -11,6 +11,7 @@ enum Views: String {
     case contentView = "ContentView"
     case folderListView = "FolderListView"
     case folderView = "FolderView"
+    case scannerView = "ScannerView"
     case cardAddEditView = "CardAddEditView"
     case cardInfoView = "CardInfoView"
 }
@@ -54,6 +55,8 @@ struct ContentView: View {
                     FolderListView(folderStore: folderStore)
                 case .folderView:
                     FolderView(folderStore: folderStore, folder: navigationModel.currentFolder!)
+                case .scannerView:
+                    ScannerView()
                 case .cardAddEditView:
                     CardAddEditView(folderStore: folderStore, folder: navigationModel.currentFolder!, card: navigationModel.currentCard)
                 case .cardInfoView:
