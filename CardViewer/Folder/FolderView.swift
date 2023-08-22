@@ -91,10 +91,11 @@ struct FolderView: View {
                 Text("Add Card")
                     .font(.largeTitle)
             }
-            .confirmationDialog("Card", isPresented: $isShowingCardAddOptions, titleVisibility: .visible) {
+            .confirmationDialog("Card", isPresented: $isShowingCardAddOptions, titleVisibility: .hidden) {
                 Button("Scan Card") {
                     navigationModel.currentFolder = folder
                     navigationModel.currentCard = nil
+                    navigationModel.scannerViewIsIn = true
                     navigationModel.navigationPath.append(Views.scannerView)
                 }
                 Button("Manually Add Card") {

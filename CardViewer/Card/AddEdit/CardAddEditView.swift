@@ -22,6 +22,10 @@ struct CardAddEditView: View {
     func moveBackToFolderView() {
         navigationModel.currentFolder = model.folder
         navigationModel.navigationPath.removeLast()
+        if navigationModel.scannerViewIsIn {
+            navigationModel.navigationPath.removeLast()
+            navigationModel.scannerViewIsIn = false
+        }
     }
     
     var body: some View {

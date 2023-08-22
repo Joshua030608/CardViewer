@@ -16,7 +16,7 @@ struct ParsedDataView: View {
             Text(urlString)
                 .background(.black)
                 .foregroundColor(.white)
-            Text(parser.parseHtmlAsURLString(urlString))
+            //Text(parser.parseHtmlAsURLString(urlString))
             Button {
                 print("hello world")
             } label: {

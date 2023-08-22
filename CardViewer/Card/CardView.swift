@@ -10,6 +10,7 @@ import SwiftUI
 struct CardView: View {
     
     @EnvironmentObject var navigationModel: NavigationModel
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     var card: Card
     @State private var isShowingFront = true
     @State private var flipped = false
@@ -23,18 +24,18 @@ struct CardView: View {
             HStack {
                 VStack {
                     Text(card.playerName)
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .light ? .black : .white)
                     Text(card.team)
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .light ? .black : .white)
                     if card.playerName == "" {
                         Text("No name")
                             .font(.title2)
-                            .foregroundColor(.black)
+                            .foregroundColor(colorScheme == .light ? .black : .white)
                     }
                 }
                 Spacer()
                 Text(card.position)
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .light ? .black : .white)
                 Spacer()
                 /*if let _ = card.frontImageData {
                     Image(uiImage: isShowingFront ? UIImage(data: card.frontImageData!)! : UIImage(data: card.backImageData!)!)

@@ -11,6 +11,7 @@ class NavigationModel: ObservableObject {
     @Published var navigationPath = NavigationPath()
     @Published var currentFolder: Folder?
     @Published var currentCard: Card?
+    @Published var scannerViewIsIn = false
 }
 
 @main

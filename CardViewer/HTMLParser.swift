@@ -25,11 +25,8 @@ final class HTMLParser {
         do {
             let html2 = try String(contentsOf: url)
             html = html2
-            
         } catch {
-            
             return nil
-            
         }
         
         do {
@@ -47,8 +44,8 @@ final class HTMLParser {
             
             //return String("Player Name: \(stringArray[7])" + "Player Grade: \(Int.parse(from: stringArray[9]))" + "Year: \(Int.parse(from: stringArray[3]))")
             return (stringArray[7], Int.parse(from: stringArray[9]))
+
         }
-        
         catch {
             return nil
         }

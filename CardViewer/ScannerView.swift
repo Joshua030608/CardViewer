@@ -13,6 +13,7 @@ struct ScannerView: View {
     @State var testString: String = ""
     @State var readyToNavigate = false
     @EnvironmentObject var navigationModel: NavigationModel
+    @State private var parser = HTMLParser()
     var body: some View {
             ZStack(alignment: .bottom) {
                 QRScanner(result: $scanResult)
@@ -26,7 +27,10 @@ struct ScannerView: View {
             .onChange(of: scanResult, perform: { _ in
                 if URL(string: scanResult) != nil {
                     //testString = scanResult
-                    navigationModel.currentCard
+                    let parsedData = parser.parseHtmlAsURLString(scanResult)
+                    if let parsedData = parsedData {
+                        navigationModel.currentCard = Card(playerName: parsedData.0, team: "", frontImageData: nil, backImageData: nil, position: "", grade: parsedData.1)
+                    }
                     navigationModel.navigationPath.append(Views.cardAddEditView)
                 }
             })

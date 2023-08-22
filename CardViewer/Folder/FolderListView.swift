@@ -10,6 +10,7 @@ import SwiftUI
 struct FolderListView: View {
     
     @EnvironmentObject var navigationModel: NavigationModel
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     @ObservedObject var folderStore: FolderStore
     @State private var folderAddEditIsShowing = false
@@ -45,13 +46,13 @@ struct FolderListView: View {
                         HStack {
                             Text("Name: " + folder.name)
                                 .font(.largeTitle)
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
                             Text("League: " + folder.league.rawValue)
                                 .font(.title)
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
                             Text("# of Cards: " + String(folder.cards.count))
                                 .font(.title)
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .light ? .black : .white)
                         }
                     }
 
