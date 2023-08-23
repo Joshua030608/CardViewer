@@ -10,6 +10,8 @@
 		021AC4FF2A7096AA00BF54F4 /* FolderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */; };
 		02373CB429CD168B00305ADD /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* FolderView.swift */; };
 		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
+		023CC5082A95844100E3522E /* FolderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CC5072A95844100E3522E /* FolderListCell.swift */; };
+		023CC50A2A95858200E3522E /* AddEditFolderSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CC5092A95858200E3522E /* AddEditFolderSheetView.swift */; };
 		025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */; };
 		02602F7C2A1D82F60083EA8C /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02602F7B2A1D82F60083EA8C /* FolderListView.swift */; };
 		026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026579AE2A5C84FB000A0C9C /* PreviewView.swift */; };
@@ -42,6 +44,8 @@
 		021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoView.swift; sourceTree = "<group>"; };
 		02373CB329CD168B00305ADD /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
+		023CC5072A95844100E3522E /* FolderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListCell.swift; sourceTree = "<group>"; };
+		023CC5092A95858200E3522E /* AddEditFolderSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditFolderSheetView.swift; sourceTree = "<group>"; };
 		025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		02602F7B2A1D82F60083EA8C /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
 		026579AE2A5C84FB000A0C9C /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -95,9 +99,11 @@
 			children = (
 				021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */,
 				02602F7B2A1D82F60083EA8C /* FolderListView.swift */,
+				023CC5092A95858200E3522E /* AddEditFolderSheetView.swift */,
 				02EACFA329E6235D001B1D44 /* Folder.swift */,
 				02EACFA529E624A0001B1D44 /* FolderStore.swift */,
 				02373CB329CD168B00305ADD /* FolderView.swift */,
+				023CC5072A95844100E3522E /* FolderListCell.swift */,
 			);
 			path = Folder;
 			sourceTree = "<group>";
@@ -273,11 +279,13 @@
 				021AC4FF2A7096AA00BF54F4 /* FolderInfoView.swift in Sources */,
 				027F884B2A4131FD00216E60 /* CameraView.swift in Sources */,
 				02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */,
+				023CC5082A95844100E3522E /* FolderListCell.swift in Sources */,
 				025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */,
 				026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */,
 				02AA299A2A09CC9700E3C7B9 /* CardInfoView.swift in Sources */,
 				0294E78B2A830E35007E8E7C /* FlipEffect.swift in Sources */,
 				028ABF8A2A903ED700E4A042 /* HTMLParser.swift in Sources */,
+				023CC50A2A95858200E3522E /* AddEditFolderSheetView.swift in Sources */,
 				028ABF8F2A903ED700E4A042 /* ScannerView.swift in Sources */,
 				027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */,
 				02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */,
@@ -418,7 +426,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.05;
+				CURRENT_PROJECT_VERSION = 1.06;
 				DEVELOPMENT_ASSET_PATHS = "\"CardViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KTP2C8ZWM3;
@@ -452,7 +460,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.05;
+				CURRENT_PROJECT_VERSION = 1.06;
 				DEVELOPMENT_ASSET_PATHS = "\"CardViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KTP2C8ZWM3;

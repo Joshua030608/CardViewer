@@ -7,7 +7,16 @@
 
 import SwiftUI
 
+
 struct FolderListView: View {
+    
+    private enum sortingModes {
+        case league
+        case cardsAscending
+        case cardsDescending
+        case nameAscending
+        case nameDescending
+    }
     
     @EnvironmentObject var navigationModel: NavigationModel
     @Environment(\.colorScheme) var colorScheme: ColorScheme
@@ -16,9 +25,25 @@ struct FolderListView: View {
     @State private var folderAddEditIsShowing = false
     @State private var newFolderName = ""
     @State private var newFolderLeague: League = .NFL
-    @State private var newFolderCards: [Card] = []
-    @State private var refresh = false
+    @State private var sortingMode: sortingModes = .nameDescending
     
+    private var folders: [[Folder]] {
+        
+        switch sortingMode {
+        case .league:
+            for folder in folderStore.folders {
+                
+            }
+        case .cardsAscending:
+            <#code#>
+        case .cardsDescending:
+            <#code#>
+        case .nameAscending:
+            <#code#>
+        case .nameDescending:
+            <#code#>
+        }
+    }
     
     init(folderStore: FolderStore) {
         self.folderStore = folderStore
@@ -27,40 +52,34 @@ struct FolderListView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(folderStore.folders) { folder in
-                    /*
-                    NavigationLink(value: folder) {
-                        HStack {
-                            Text("Name: " + folder.name)
-                                .font(.largeTitle)
-                            Text("League: " + folder.league.rawValue)
-                                .font(.title)
-                            Text("# of Cards: " + String(folder.cards.count))
-                                .font(.title)
-                        }
-                    } */
+                ForEach(folders) { folder in
                     Button {
                         navigationModel.currentFolder = folder
                         navigationModel.navigationPath.append(Views.folderView)
                     } label: {
-                        HStack {
-                            Text("Name: " + folder.name)
-                                .font(.largeTitle)
-                                .foregroundColor(colorScheme == .light ? .black : .white)
-                            Text("League: " + folder.league.rawValue)
-                                .font(.title)
-                                .foregroundColor(colorScheme == .light ? .black : .white)
-                            Text("# of Cards: " + String(folder.cards.count))
-                                .font(.title)
-                                .foregroundColor(colorScheme == .light ? .black : .white)
-                        }
+                        FolderListCell(folder: folder)
                     }
 
                 }
                 .onDelete(perform: folderStore.deleteFolder)
             }
             .toolbar {
-                EditButton()
+                ToolbarItem {
+                    EditButton()
+                }
+                ToolbarItem(placement: .principal) {
+                    Menu {
+                        Label("Most Cards To Least Cards", systemImage: "xbox.logo")
+                        Button {
+                            sortFoldersByLeague()
+                        } label: {
+                            Text("Sort By League")
+                        }
+
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
+                }
             }
             Button {
                 folderAddEditIsShowing = true
@@ -69,40 +88,8 @@ struct FolderListView: View {
                     .font(.largeTitle)
             }
         }
-        .onAppear(perform: {
-            refresh.toggle()
-            print("refresh toggled")
-        })
         .sheet(isPresented: $folderAddEditIsShowing, content: {
-            VStack {
-                TextField("Name", text: $newFolderName)
-                    .textFieldStyle(.roundedBorder)
-                    .multilineTextAlignment(.center)
-                    .font(.largeTitle)
-                    .padding(50)
-                Picker(selection: $newFolderLeague, label: Text("")) {
-                    ForEach(League.allCases) { case1 in
-                        Text(case1.rawValue)
-                            .tag(case1)
-                    }
-                }
-                Button {
-                    print("Save button about to save, currently " + String(folderStore.folders.count) + " folders. New folder's name is " + newFolderName + " and its league is " + newFolderLeague.rawValue + ".")
-                    //Save Folder with the old folder's id IF EDITING
-                    folderStore.save(folder: Folder(name: newFolderName, cards: [], league: newFolderLeague))
-                    print("Save Folder Button Pressed, there are now " + String(folderStore.folders.count) + " folders.")
-                    folderAddEditIsShowing = false
-                    newFolderName = ""
-                    newFolderLeague = .NFL
-                } label: {
-                    Text("Save Folder")
-                        .cornerRadius(10)
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                        .background(.blue)
-                }
-                
-            }
+            AddEditFolderSheetView(folderStore: folderStore)
         })
     }
 }
