@@ -14,6 +14,19 @@ enum League: String, Codable, CaseIterable, Identifiable {
     case NBA = "NBA"
     case MLB = "MLB"
     case NHL = "NHL"
+    
+    func getImageName() -> String {
+        switch self {
+        case .NFL:
+            return "football.fill"
+        case .NBA:
+            return "basketball.fill"
+        case .MLB:
+            return "baseball.fill"
+        case .NHL:
+            return "hockey.puck.fill"
+        }
+    }
 }
 
 class Folder: Identifiable, Codable, ObservableObject, Hashable {
@@ -71,4 +84,8 @@ class Folder: Identifiable, Codable, ObservableObject, Hashable {
         folderStore.save(folder: self)
     }
 }
+
+extension Array: Identifiable where Element: Hashable {
+    public var id: UUID { UUID() }
+ }
 

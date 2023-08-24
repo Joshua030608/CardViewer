@@ -20,7 +20,7 @@ final class HTMLParser {
         
         var html = ""
         
-        guard let url = URL(string: urlString) else { return nil}
+        guard let url = URL(string: urlString) else { return nil }
         
         do {
             let html2 = try String(contentsOf: url)

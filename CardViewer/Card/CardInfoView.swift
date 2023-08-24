@@ -41,7 +41,7 @@ struct CardInfoView: View {
             Text(card.team)
                 .font(.title2)
             Text("Number of folders: " + String(folderStore.folders.count))
-            if card.playerName == nil || card.playerName == "" {
+            if card.playerName == "" /* || card.playerName == nil */ {
                 Text("No player name given")
                     .font(Font(CTFont(.system, size: 30)))
             }

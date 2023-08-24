@@ -91,7 +91,6 @@ class CardAddEditViewModel: ObservableObject {
         if let index = folder.cards.firstIndex(where: { card.id == $0.id }) {
             folder.cards[index] = card
         } else {
-            #warning("need to update change funcs to use back data")
             folder.cards.append(self.card)
         }
             folderStore.saveFolders()
