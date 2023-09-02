@@ -124,9 +124,7 @@ struct FolderListView: View {
                         } label: {
                             FolderListCell(folder: folder)
                         }
-                    }.onDelete { indexSet in
-                        //nothing
-                    }
+                    }.onDelete(perform: deleteFolder2)
                 }
             }
             .toolbar {
@@ -155,14 +153,29 @@ struct FolderListView: View {
         })
     }
     
+    func deleteFolder2(indexSet: IndexSet) {
+        var finalIds: [UUID] = []
+        let folders1 = folders[0].1
+        
+        indexSet.forEach { index in
+            finalIds.append(folders1[index].id)
+        }
+        folderStore.deleteFolders(for: finalIds)
+    }
+    
     func deleteFolder(indexSet: IndexSet) {
         let folders1 = folders
-        for folder in folders1 {
-            if folder.0 == leagueToDeleteFrom {
-                folderStore.deleteFolders(for: [])
-            } else {
-                break
+        var finalIds: [UUID] = []
+        
+        for foldersOfLeague in folders1 {
+            print(foldersOfLeague.0.rawValue)
+            if foldersOfLeague.0 == leagueToDeleteFrom {
+                indexSet.forEach { index in
+                    finalIds.append(foldersOfLeague.1[index].id)
+                }
             }
         }
+        print(leagueToDeleteFrom?.rawValue ?? "league is nil")
+        folderStore.deleteFolders(for: finalIds)
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 class FolderStore: ObservableObject {
     @Published var folders: Array<Folder>
+    
     private static let fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appending(component: "folders.txt")
     
     func deleteFoldersOld(indices: IndexSet) {
@@ -17,7 +18,14 @@ class FolderStore: ObservableObject {
     }
     
     func deleteFolders(for ids: [Folder.ID]) {
-        
+        ids.forEach { id in
+            for (index, folder) in folders.enumerated() {
+                if folder.id == id {
+                    folders.remove(at: index)
+                }
+            }
+        }
+        self.saveFolders()
     }
     
     func save(folder: Folder) {
