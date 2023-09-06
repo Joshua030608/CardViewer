@@ -23,7 +23,7 @@ struct AddEditFolderSheetView: View {
                 .padding(50)
             Picker(selection: $newFolderLeague, label: Text("")) {
                 ForEach(League.allCases) { case1 in
-                    Text(case1.rawValue)
+                    Text(case1.title)
                         .tag(case1)
                 }
             }

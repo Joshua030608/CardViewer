@@ -14,7 +14,7 @@ struct FolderInfoView: View {
         HStack {
             Text("Name: " + folder.name)
                 .font(.largeTitle)
-            Text("League: " + folder.league.rawValue)
+            Text("League: " + folder.league.title)
                 .font(.title)
             Text("# of Cards: " + String(folder.cards.count))
                 .font(.title)

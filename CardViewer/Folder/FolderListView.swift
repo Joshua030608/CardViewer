@@ -57,32 +57,23 @@ struct FolderListView: View {
             
         case .league:
             for folder in folderStore.folders {
-                switch folder.league {
-                case .NFL:
-                    finalArray[0].1.append(folder)
-                case .NBA:
-                    finalArray[1].1.append(folder)
-                case .MLB:
-                    finalArray[2].1.append(folder)
-                case .NHL:
-                    finalArray[3].1.append(folder)
-                }
+                finalArray[folder.league.rawValue].1.append(folder)
             }
         case .nameAscending:
             finalArray[0].1 = folderStore.folders.sorted(by: { folder1, folder2 in
-                return folder1.name.localizedCaseInsensitiveCompare(folder2.name) == .orderedDescending
+                folder1.name.localizedCaseInsensitiveCompare(folder2.name) == .orderedDescending
             })
         case .nameDescending:
             finalArray[0].1 = folderStore.folders.sorted(by: { folder1, folder2 in
-                return folder1.name.localizedCaseInsensitiveCompare(folder2.name) == .orderedAscending
+                folder1.name.localizedCaseInsensitiveCompare(folder2.name) == .orderedAscending
             })
         case .cardsAscending:
             finalArray[0].1 = folderStore.folders.sorted(by: { folder1, folder2 in
-                return folder1.cards.count < folder2.cards.count
+                folder1.cards.count < folder2.cards.count
             })
         case .cardsDescending:
             finalArray[0].1 = folderStore.folders.sorted(by: { folder1, folder2 in
-                return folder1.cards.count > folder2.cards.count
+                folder1.cards.count > folder2.cards.count
             })
         }
         
@@ -109,10 +100,10 @@ struct FolderListView: View {
                                     }
                                 }.onDelete { indexSet in
                                     leagueToDeleteFrom = foldersOfLeague.0
-                                    deleteFolder(indexSet: indexSet)
+                                    deleteFoldersForLeagueSorting(indexSet: indexSet)
                                 }
                             } header: {
-                                Label(foldersOfLeague.0.rawValue, systemImage: foldersOfLeague.0.getImageName())
+                                Label(foldersOfLeague.0.title, systemImage: foldersOfLeague.0.getImageName())
                             }
                         }
                     }
@@ -124,7 +115,7 @@ struct FolderListView: View {
                         } label: {
                             FolderListCell(folder: folder)
                         }
-                    }.onDelete(perform: deleteFolder2)
+                    }.onDelete(perform: deleteFoldersNonLeagueSorting)
                 }
             }
             .toolbar {
@@ -153,29 +144,21 @@ struct FolderListView: View {
         })
     }
     
-    func deleteFolder2(indexSet: IndexSet) {
-        var finalIds: [UUID] = []
-        let folders1 = folders[0].1
-        
-        indexSet.forEach { index in
-            finalIds.append(folders1[index].id)
-        }
+    func deleteFoldersNonLeagueSorting(indexSet: IndexSet) {
+        let folders = folders[0].1
+        let finalIds = indexSet.map { folders[$0].id }
         folderStore.deleteFolders(for: finalIds)
     }
     
-    func deleteFolder(indexSet: IndexSet) {
-        let folders1 = folders
-        var finalIds: [UUID] = []
+    func deleteFoldersForLeagueSorting(indexSet: IndexSet) {
+        let folders = folders
         
-        for foldersOfLeague in folders1 {
-            print(foldersOfLeague.0.rawValue)
+        for foldersOfLeague in folders {
             if foldersOfLeague.0 == leagueToDeleteFrom {
-                indexSet.forEach { index in
-                    finalIds.append(foldersOfLeague.1[index].id)
-                }
+                let finalIds = indexSet.map{ foldersOfLeague.1[$0].id }
+                folderStore.deleteFolders(for: finalIds)
+                return
             }
         }
-        print(leagueToDeleteFrom?.rawValue ?? "league is nil")
-        folderStore.deleteFolders(for: finalIds)
     }
 }

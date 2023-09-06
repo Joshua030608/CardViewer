@@ -34,8 +34,9 @@ struct CardAddEditImageView: View {
         }
         
         self._images = State(initialValue: images1)
-        print(#function + "\(images1.count) images")
-        print(#function + "\(self.images.count) images")
+//        print(#function + "\(images1.count) images")
+//        print(#function + "\(self.images.count) images")
+        print(#function + "front: \((frontData?.count ?? 0)/1_000_000) back: \((backData?.count ?? 0)/1_000_000)")
     }
     
     var body: some View {
@@ -50,11 +51,11 @@ struct CardAddEditImageView: View {
         LazyVStack(spacing: 15) {
             ForEach(images) { image in
                 Image(uiImage: image.image)
+                    .resizable()
                     .onDrag({
                         self.draggedItem = image
                         return NSItemProvider(item: nil, typeIdentifier: UTType.image.description)
                     })
-                    //.resizable()
                     .frame(width: 150, height: 150)
                     .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: image, items: $images, draggedItem: $draggedItem))
             }

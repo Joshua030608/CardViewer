@@ -17,7 +17,7 @@ struct FolderListCell: View {
             Text("Name: " + folder.name)
                 .font(.largeTitle)
                 .foregroundColor(colorScheme == .light ? .black : .white)
-            Text("League: " + folder.league.rawValue)
+            Text("League: " + folder.league.title)
                 .font(.title)
                 .foregroundColor(colorScheme == .light ? .black : .white)
             Text("# of Cards: " + String(folder.cards.count))

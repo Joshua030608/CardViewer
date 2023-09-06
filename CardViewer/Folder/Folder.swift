@@ -7,13 +7,19 @@
 
 import Foundation
 
-enum League: String, Codable, CaseIterable, Identifiable {
+enum League: Int, Codable, CaseIterable, Identifiable {
     var id: League { self }
     
-    case NFL = "NFL"
-    case NBA = "NBA"
-    case MLB = "MLB"
-    case NHL = "NHL"
+    case NFL, NBA, MLB, NHL
+    
+    var title: String {
+        switch self {
+            case .NFL: return "NFL"
+            case .NBA: return "NBA"
+            case .MLB: return "MLB"
+            case .NHL: return "NHL"
+        }
+    }
     
     func getImageName() -> String {
         switch self {

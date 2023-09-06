@@ -12,19 +12,13 @@ class FolderStore: ObservableObject {
     
     private static let fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appending(component: "folders.txt")
     
-    func deleteFoldersOld(indices: IndexSet) {
-        Array<Int>(indices).reversed().forEach { folders.remove(at: $0) }
-        self.saveFolders()
+    func deleteFolder(for id: Folder.ID) {
+        guard let index = folders.firstIndex(where: { $0.id == id } ) else { return }
+        folders.remove(at: index)
     }
     
     func deleteFolders(for ids: [Folder.ID]) {
-        ids.forEach { id in
-            for (index, folder) in folders.enumerated() {
-                if folder.id == id {
-                    folders.remove(at: index)
-                }
-            }
-        }
+        ids.forEach { deleteFolder(for: $0) }
         self.saveFolders()
     }
     
