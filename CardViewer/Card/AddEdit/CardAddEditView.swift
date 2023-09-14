@@ -9,12 +9,10 @@ import SwiftUI
 import PhotosUI
 
 struct CardAddEditView: View {
-    let folderStore: FolderStore
     @EnvironmentObject var navigationModel: NavigationModel
     @StateObject private var model: CardAddEditViewModel
     
     init(folderStore: FolderStore, folder: Folder, card: Card?) {
-        self.folderStore = folderStore
         let viewModel = CardAddEditViewModel(folderStore: folderStore, folder: folder, card: card)
         self._model = StateObject(wrappedValue: viewModel)
     }

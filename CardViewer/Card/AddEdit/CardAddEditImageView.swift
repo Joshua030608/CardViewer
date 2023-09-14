@@ -11,15 +11,15 @@ import UniformTypeIdentifiers
 
 struct CardAddEditImageView: View {
     
-    let frontData: Data?
-    let backData: Data?
-    @State var draggedItem: IDImage?
+    @State private var frontData: Data?
+    @State private var backData: Data?
+    //@StateObject var draggedItem: IDImage?
     
     @State var images: [IDImage] = []
     
     init(frontData: Data?, backData: Data?) {
-        self.frontData = frontData
-        self.backData = backData
+        self._frontData = State(initialValue: frontData)
+        self._backData = State(initialValue: backData)
         
         var images1: [IDImage] = []
         
@@ -52,12 +52,12 @@ struct CardAddEditImageView: View {
             ForEach(images) { image in
                 Image(uiImage: image.image)
                     .resizable()
-                    .onDrag({
+                    /*.onDrag({
                         self.draggedItem = image
                         return NSItemProvider(item: nil, typeIdentifier: UTType.image.description)
-                    })
+                    })*/
                     .frame(width: 150, height: 150)
-                    .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: image, items: $images, draggedItem: $draggedItem))
+                    //.onDrop(of: [UTType.image], delegate: MyDropDelegate(item: image, items: $images, draggedItem: $draggedItem))
             }
         }
     }

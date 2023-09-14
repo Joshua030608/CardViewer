@@ -22,7 +22,7 @@ class CardAddEditViewModel: ObservableObject {
     @Published var isShowingAlert = false
     @Published var image1: UIImage?
     @Published var image2: UIImage?
-    var folderStore: FolderStore
+    let folderStore: FolderStore
     let folder: Folder
     @Published var card: Card
     let isEditing: Bool
@@ -59,14 +59,16 @@ class CardAddEditViewModel: ObservableObject {
             guard let item1 = self.selectedPhotos.first else { return }
             
             self.getDataFromSelectedPhoto(item: item1) { result in
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
+                    print("setting front")
                     self.card.frontImageData = result
                 }
             }
             
             guard self.selectedPhotos.count >= 2 else { return }
             self.getDataFromSelectedPhoto(item: self.selectedPhotos[1]) { result in
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
+                    print("setting back")
                     self.card.backImageData = result
                 }
             }
