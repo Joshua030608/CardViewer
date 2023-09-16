@@ -52,6 +52,8 @@ struct CardAddEditImageView: View {
             ForEach(images) { image in
                 Image(uiImage: image.image)
                     .resizable()
+                    .previewInterfaceOrientation(.portrait)
+
                     /*.onDrag({
                         self.draggedItem = image
                         return NSItemProvider(item: nil, typeIdentifier: UTType.image.description)

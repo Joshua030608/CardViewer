@@ -16,6 +16,7 @@ class NavigationModel: ObservableObject {
 
 @main
 struct CardViewerApp: App {
+    
     @StateObject private var folderStore = FolderStore()
     @StateObject var navigationModel = NavigationModel()
     var body: some Scene {
