@@ -52,7 +52,7 @@ struct ContentView: View {
                 case .contentView:
                     ContentView(folderStore: folderStore)
                 case .folderListView:
-                    FolderListView()
+                    FolderListView(navigationModel: navigationModel, folderStore: folderStore)
                 case .folderView:
                     FolderView(folderStore: folderStore, folder: navigationModel.currentFolder!)
                 case .scannerView:

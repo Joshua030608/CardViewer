@@ -15,9 +15,9 @@ class FolderListMainViewModel: ObservableObject {
     }
     
     let navigationModel: NavigationModel
-    let folderStore: folderStore
+    let folderStore: FolderStore
     
-    private enum SortingMode: Int, CaseIterable {
+    enum SortingMode: Int, CaseIterable {
         case league
         case cardsAscending
         case cardsDescending
@@ -40,13 +40,13 @@ class FolderListMainViewModel: ObservableObject {
         }
     }
     
-    @Published private var folderAddEditIsShowing = false
     @Published private var newFolderName = ""
     @Published private var newFolderLeague: League = .NFL
-    @Published private var sortingMode: SortingMode = .nameDescending
-    @Published private var leagueToDeleteFrom: League?
+    @Published var folderAddEditIsShowing = false
+    @Published var sortingMode: SortingMode = .nameDescending
+    @Published var leagueToDeleteFrom: League?
     
-    private var folders: [(League, [Folder])] {
+    var folders: [(League, [Folder])] {
         
         var finalArray: [(League, [Folder])] = []
         

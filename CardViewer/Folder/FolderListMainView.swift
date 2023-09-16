@@ -10,6 +10,10 @@ struct FolderListMainView: View {
     
     @State private var viewModel: FolderListMainViewModel
     
+    init(viewModel: FolderListMainViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         VStack {
             List {
@@ -34,14 +38,14 @@ struct FolderListMainView: View {
                         }
                     }
                 } else {
-                    ForEach(folders[0].1) { folder in
+                    ForEach(viewModel.folders[0].1) { folder in
                         Button {
-                            navigationModel.currentFolder = folder
-                            navigationModel.navigationPath.append(Views.folderView)
+                            viewModel.navigationModel.currentFolder = folder
+                            viewModel.navigationModel.navigationPath.append(Views.folderView)
                         } label: {
                             FolderListCell(folder: folder)
                         }
-                    }.onDelete(perform: deleteFoldersNonLeagueSorting)
+                    }.onDelete(perform: viewModel.deleteFoldersNonLeagueSorting)
                 }
             }
             .toolbar {
@@ -50,8 +54,8 @@ struct FolderListMainView: View {
                 }
                 ToolbarItem(placement: .principal) {
                     Menu {
-                        ForEach(SortingMode.allCases, id: \.rawValue) { mode in
-                            Button(mode.menuTitle, action: { sortingMode = mode })
+                        ForEach(FolderListMainViewModel.SortingMode.allCases, id: \.rawValue) { mode in
+                            Button(mode.menuTitle, action: { viewModel.sortingMode = mode })
                         }
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
@@ -59,14 +63,14 @@ struct FolderListMainView: View {
                 }
             }
             Button {
-                folderAddEditIsShowing = true
+                viewModel.folderAddEditIsShowing = true
             } label: {
                 Text("Add Folder")
                     .font(.largeTitle)
             }
         }
-        .sheet(isPresented: $folderAddEditIsShowing, content: {
-            AddEditFolderSheetView(folderStore: folderStore)
+        .sheet(isPresented: $viewModel.folderAddEditIsShowing, content: {
+            AddEditFolderSheetView(folderStore: viewModel.folderStore)
         })
     }
 }
