@@ -30,7 +30,7 @@ struct CardInfoView: View {
                 if let backData = card.backImageData {
                     Image(uiImage: UIImage(data: backData)!)
                         .resizable()
-                        .frame(width: 180, height: 300)
+                        .frame(width: 150, height: 300)
                         .aspectRatio(contentMode: .fit)
                 }
             }
@@ -40,12 +40,13 @@ struct CardInfoView: View {
                 .font(.title2)
             Text(card.team)
                 .font(.title2)
-            Text("Number of folders: " + String(folderStore.folders.count))
-            if card.playerName == "" /* || card.playerName == nil */ {
+            if card.playerName == "" {
                 Text("No player name given")
                     .font(Font(CTFont(.system, size: 30)))
             }
-        }.toolbar {
+            Spacer()
+        }.padding(.top, 25)
+        .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     print("Edit Button Pressed for Player: " + card.playerName)

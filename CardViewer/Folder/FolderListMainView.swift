@@ -8,11 +8,8 @@
 import SwiftUI
 struct FolderListMainView: View {
     
-    @State private var viewModel: FolderListMainViewModel
-    
-    init(viewModel: FolderListMainViewModel) {
-        self.viewModel = viewModel
-    }
+    @ObservedObject var viewModel: FolderListMainViewModel
+    static let buttonHeight: CGFloat = 65
     
     var body: some View {
         VStack {
@@ -62,12 +59,13 @@ struct FolderListMainView: View {
                     }
                 }
             }
+            
             Button {
                 viewModel.folderAddEditIsShowing = true
             } label: {
                 Text("Add Folder")
                     .font(.largeTitle)
-            }
+            }.frame(height: Self.buttonHeight)
         }
         .sheet(isPresented: $viewModel.folderAddEditIsShowing, content: {
             AddEditFolderSheetView(folderStore: viewModel.folderStore)

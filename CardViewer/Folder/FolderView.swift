@@ -28,6 +28,7 @@ struct FolderView: View {
     @State private var newFolderCards: [Card] = []
     @State private var searchString = ""
     @State private var searchMode = SearchTypes.name
+    @State private var isShowingAlert = false
     
     private var searchPromptString: String {
         switch searchMode {
@@ -85,12 +86,26 @@ struct FolderView: View {
                     .multilineTextAlignment(.center)
                     .opacity(cards.isEmpty ? 1.0 : 0.0)
             }
-            Button {
-                isShowingCardAddOptions = true
-            } label: {
-                Text("Add Card")
-                    .font(.largeTitle)
-            }
+            HStack {
+                Button {
+                    isShowingCardAddOptions = true
+                } label: {
+                    Text("Add Card")
+                        .font(.largeTitle)
+                }
+                Divider()
+                Button {
+                    if folder.cards.isEmpty {
+                        isShowingAlert = true
+                    } else {
+                        navigationModel.currentCard = folder.cards.randomElement()
+                        navigationModel.navigationPath.append(Views.cardInfoView)
+                    }
+                } label: {
+                   Text("Random")
+                        .font(.largeTitle)
+                }
+            }.frame(height: 65)
             .confirmationDialog("Card", isPresented: $isShowingCardAddOptions, titleVisibility: .hidden) {
                 Button("Scan Card") {
                     navigationModel.currentFolder = folder
@@ -114,6 +129,9 @@ struct FolderView: View {
                 .labelsHidden()
                 .pickerStyle(.segmented)
             }
+        }
+        .alert("You Have To Add A Card First!", isPresented: $isShowingAlert) {
+            Button("Ok", role: .cancel) { }
         }
     }
         /*.sheet(isPresented: $folderAddEditIsShowing, content: {
