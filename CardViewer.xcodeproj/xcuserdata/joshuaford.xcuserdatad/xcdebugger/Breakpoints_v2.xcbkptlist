@@ -66,6 +66,38 @@
             endingLineNumber = "24"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "CC307815-107A-4802-AC7E-C2221635F064 - fcdb6405d4455971"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;__C.AVCapturePhoto, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(CardViewer.CameraView, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;)&gt; in CardViewer.CustomCameraView.body.getter : some"
+                  moduleName = "CardViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshuaford/Documents/CardViewer/CardViewer/Card/AddEdit/Camera/CustomCameraView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "868">
+               </Location>
+               <Location
+                  uuid = "CC307815-107A-4802-AC7E-C2221635F064 - fcdb6405d4455971"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;__C.AVCapturePhoto, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(CardViewer.CameraView, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;)&gt; in CardViewer.CustomCameraView.body.getter : some"
+                  moduleName = "CardViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshuaford/Documents/CardViewer/CardViewer/Card/AddEdit/Camera/CustomCameraView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "776">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -21,6 +21,8 @@ struct FolderView: View {
     @ObservedObject var folderStore: FolderStore
     @ObservedObject var folder: Folder
     
+    @AppStorage("hasAddedACard") var hasAddedACard: Bool = false
+    
     @State private var folderAddEditIsShowing = false
     @State private var isShowingCardAddOptions = false
     @State private var newFolderName = ""
@@ -28,7 +30,8 @@ struct FolderView: View {
     @State private var newFolderCards: [Card] = []
     @State private var searchString = ""
     @State private var searchMode = SearchTypes.name
-    @State private var isShowingAlert = false
+    
+    private let buttonHeight: CGFloat = 65
     
     private var searchPromptString: String {
         switch searchMode {
@@ -64,60 +67,77 @@ struct FolderView: View {
     }
     
     var body: some View {
-        VStack {
-            ZStack {
-                List {
-                    ForEach(cards) { card in
-                        CardView(card: card)
-                    }.onDelete { indexSet in
-                        folder.deleteCard(indices: indexSet, folderStore: folderStore)
-                    }
-                }
-                .searchable(text: $searchString, placement: .navigationBarDrawer, prompt: searchPromptString)
-                .toolbar {
-                    EditButton()
-                }
-                .opacity(cards.isEmpty ? 0.0 : 1.0)
-                Text("No Cards Have Been Added!")
-                    .padding(125)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.blue)
-                    .multilineTextAlignment(.center)
-                    .opacity(cards.isEmpty ? 1.0 : 0.0)
+        ZStack {
+            if hasAddedACard == false {
+                Color.black
+                    .opacity(0.5)
+                    .ignoresSafeArea()
+                    .padding(.bottom, buttonHeight + 5)
+                VStack {
+                    Spacer()
+                    Text("Tap Here To Add A Card!")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.red)
+                    Image(systemName: "arrow.down")
+                        .resizable()
+                        .foregroundColor(.red)
+                        .frame(width: 100, height: 125)
+                }.padding(.bottom, buttonHeight + 5)
             }
-            HStack {
-                Button {
-                    isShowingCardAddOptions = true
-                } label: {
-                    Text("Add Card")
-                        .font(.largeTitle)
-                }
-                Divider()
-                Button {
-                    if folder.cards.isEmpty {
-                        isShowingAlert = true
-                    } else {
-                        navigationModel.currentCard = folder.cards.randomElement()
-                        navigationModel.navigationPath.append(Views.cardInfoView)
+            VStack {
+                ZStack {
+                    List {
+                        ForEach(cards) { card in
+                            CardView(card: card)
+                        }.onDelete { indexSet in
+                            folder.deleteCard(indices: indexSet, folderStore: folderStore)
+                        }
                     }
-                } label: {
-                   Text("Random")
+                    .searchable(text: $searchString, placement: .navigationBarDrawer, prompt: searchPromptString)
+                    .toolbar {
+                        EditButton()
+                    }
+                    .opacity(cards.isEmpty ? 0.0 : 1.0)
+                    Text("No Cards Have Been Added!")
+                        .padding(125)
                         .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
+                        .multilineTextAlignment(.center)
+                        .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }
-            }.frame(height: 65)
-            .confirmationDialog("Card", isPresented: $isShowingCardAddOptions, titleVisibility: .hidden) {
-                Button("Scan Card") {
-                    navigationModel.currentFolder = folder
-                    navigationModel.currentCard = nil
-                    navigationModel.scannerViewIsIn = true
-                    navigationModel.navigationPath.append(Views.scannerView)
-                }
-                Button("Manually Add Card") {
-                    navigationModel.currentFolder = folder
-                    navigationModel.currentCard = nil
-                    navigationModel.navigationPath.append(Views.cardAddEditView)
-                }
+                HStack {
+                    Button {
+                        isShowingCardAddOptions = true
+                    } label: {
+                        Text("Add Card")
+                            .font(.largeTitle)
+                    }
+                    if folder.cards.isEmpty == false {
+                        Divider()
+                        Button {
+                            navigationModel.currentCard = folder.cards.randomElement()
+                            navigationModel.navigationPath.append(Views.cardInfoView)
+                        } label: {
+                            Label("Random", systemImage: "gift.fill")
+                                .font(.largeTitle)
+                        }
+                    }
+                }.frame(height: buttonHeight)
+                    .confirmationDialog("Card", isPresented: $isShowingCardAddOptions, titleVisibility: .hidden) {
+                        Button("Scan Card") {
+                            navigationModel.currentFolder = folder
+                            navigationModel.currentCard = nil
+                            navigationModel.scannerViewIsIn = true
+                            navigationModel.navigationPath.append(Views.scannerView)
+                        }
+                        Button("Manually Add Card") {
+                            navigationModel.currentFolder = folder
+                            navigationModel.currentCard = nil
+                            navigationModel.navigationPath.append(Views.cardAddEditView)
+                        }
+                    }
             }
         }.toolbar {
             ToolbarItem(placement: .principal) {
@@ -129,9 +149,8 @@ struct FolderView: View {
                 .labelsHidden()
                 .pickerStyle(.segmented)
             }
-        }
-        .alert("You Have To Add A Card First!", isPresented: $isShowingAlert) {
-            Button("Ok", role: .cancel) { }
+        }.onChange(of: folder.cards.count) { _ in
+            hasAddedACard = true
         }
     }
         /*.sheet(isPresented: $folderAddEditIsShowing, content: {

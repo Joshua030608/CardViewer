@@ -45,7 +45,6 @@ class FolderListMainViewModel: ObservableObject {
     @Published var folderAddEditIsShowing = false
     @Published var sortingMode: SortingMode = .nameDescending
     @Published var leagueToDeleteFrom: League?
-    @Published var buttonHeight: CGFloat?
     
     var folders: [(League, [Folder])] {
         
@@ -100,9 +99,5 @@ class FolderListMainViewModel: ObservableObject {
                 return
             }
         }
-    }
-    
-    func setButtonHeightTo(_ height: CGFloat) {
-        buttonHeight = height
     }
 }
