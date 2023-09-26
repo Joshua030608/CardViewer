@@ -30,8 +30,8 @@ struct CardAddEditView: View {
         VStack {
             Spacer()
             Form {
-                if let _ = model.card.frontImageData {
-                    CardAddEditImageView(frontData: model.card.frontImageData, backData: model.card.backImageData)
+                if let frontData = model.card.frontImageData, let backData = model.card.backImageData {
+                    CardAddEditImageView(frontData: frontData, backData: backData)
                 } else {
                     Button {
                         model.isShowingPhotoOptions = true
