@@ -8,7 +8,7 @@
 import SwiftUI
 struct FolderListMainView: View {
     
-    @ObservedObject var viewModel: FolderListMainViewModel
+    @Bindable var viewModel: FolderListMainViewModel
     static let buttonHeight: CGFloat = 65
     
     var body: some View {

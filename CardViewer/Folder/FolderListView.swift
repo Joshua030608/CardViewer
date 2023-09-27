@@ -10,12 +10,12 @@ import SwiftUI
 
 struct FolderListView: View {
     
-    @StateObject private var viewModel: FolderListMainViewModel
+    @State private var viewModel: FolderListMainViewModel
     
     @AppStorage("hasAddedAFolder") var hasAddedAFolder: Bool = false
     
     init(navigationModel: NavigationModel, folderStore: FolderStore) {
-        self._viewModel = StateObject(wrappedValue: FolderListMainViewModel(navigationModel: navigationModel, folderStore: folderStore))
+        self._viewModel = State(wrappedValue: FolderListMainViewModel(navigationModel: navigationModel, folderStore: folderStore))
     }
     
     var body: some View {

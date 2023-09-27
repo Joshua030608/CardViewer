@@ -6,16 +6,36 @@
 //
 
 import SwiftUI
+import SwiftyJSON
 
-struct CardInfoView: View {
+@Observable class CardInfoViewModel {
     
     let card: Card
-    @EnvironmentObject var folderStore: FolderStore
-    @EnvironmentObject var navigationModel: NavigationModel
+    
+    init(card: Card) {
+        self.card = card
+    }
     
     func moveToCardAddEditView() {
         navigationModel.currentCard = card
         navigationModel.navigationPath.append(Views.cardAddEditView)
+    }
+    
+    func getFantasyPointsForPlayer(player: String) {
+        
+    }
+    
+}
+
+struct CardInfoView: View {
+    
+    @EnvironmentObject var folderStore: FolderStore
+    @EnvironmentObject var navigationModel: NavigationModel
+    
+    @State private var viewModel: CardInfoViewModel
+    
+    init(card: Card) {
+        self._viewModel = State(wrappedValue: CardInfoViewModel(card: card))
     }
     
     var body: some View {
@@ -44,8 +64,13 @@ struct CardInfoView: View {
                 Text("No player name given")
                     .font(Font(CTFont(.system, size: 30)))
             }
+            
             Spacer()
-        }.padding(.top, 25)
+        }
+        .task {
+            model.getFantasyPointsForPlayer(player: model.card.playerName)
+        }
+        .padding(.top, 25)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {

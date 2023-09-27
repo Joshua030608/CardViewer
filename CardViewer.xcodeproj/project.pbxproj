@@ -12,6 +12,8 @@
 		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
 		023CC5082A95844100E3522E /* FolderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CC5072A95844100E3522E /* FolderListCell.swift */; };
 		023CC50A2A95858200E3522E /* AddEditFolderSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CC5092A95858200E3522E /* AddEditFolderSheetView.swift */; };
+		025D66B72AC3ADCE00567E94 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 025D66B62AC3ADCE00567E94 /* SwiftyJSON */; };
+		025D66B92AC3AE2C00567E94 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025D66B82AC3AE2C00567E94 /* NetworkService.swift */; };
 		025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */; };
 		02602F7C2A1D82F60083EA8C /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02602F7B2A1D82F60083EA8C /* FolderListView.swift */; };
 		026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026579AE2A5C84FB000A0C9C /* PreviewView.swift */; };
@@ -48,6 +50,7 @@
 		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
 		023CC5072A95844100E3522E /* FolderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListCell.swift; sourceTree = "<group>"; };
 		023CC5092A95858200E3522E /* AddEditFolderSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditFolderSheetView.swift; sourceTree = "<group>"; };
+		025D66B82AC3AE2C00567E94 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		025DF5C829F07B9C009DE6D5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		02602F7B2A1D82F60083EA8C /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
 		026579AE2A5C84FB000A0C9C /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				025D66B72AC3ADCE00567E94 /* SwiftyJSON in Frameworks */,
 				028ABF922A903EF000E4A042 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +159,7 @@
 				02C9862A29C1361300CB87A0 /* CardViewerApp.swift */,
 				0294E77C2A830AEB007E8E7C /* IDImage.swift */,
 				0294E78A2A830E35007E8E7C /* FlipEffect.swift */,
+				025D66B82AC3AE2C00567E94 /* NetworkService.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 			name = CardViewer;
 			packageProductDependencies = (
 				028ABF912A903EF000E4A042 /* SwiftSoup */,
+				025D66B62AC3ADCE00567E94 /* SwiftyJSON */,
 			);
 			productName = CardViewer;
 			productReference = 02C9862729C1361300CB87A0 /* CardViewer.app */;
@@ -250,6 +256,7 @@
 			mainGroup = 02C9861E29C1361300CB87A0;
 			packageReferences = (
 				028ABF902A903EF000E4A042 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				025D66B52AC3ADCE00567E94 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 02C9862829C1361300CB87A0 /* Products */;
 			projectDirPath = "";
@@ -288,6 +295,7 @@
 				02C9862B29C1361300CB87A0 /* CardViewerApp.swift in Sources */,
 				02B9699B2AB3DA9D0095EDD4 /* FolderListMainView.swift in Sources */,
 				023CC5082A95844100E3522E /* FolderListCell.swift in Sources */,
+				025D66B92AC3AE2C00567E94 /* NetworkService.swift in Sources */,
 				025DF5C929F07B9C009DE6D5 /* ImagePicker.swift in Sources */,
 				026579AF2A5C84FB000A0C9C /* PreviewView.swift in Sources */,
 				02AA299A2A09CC9700E3C7B9 /* CardInfoView.swift in Sources */,
@@ -446,6 +454,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,6 +489,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,6 +529,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		025D66B52AC3ADCE00567E94 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		028ABF902A903EF000E4A042 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -530,6 +548,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		025D66B62AC3ADCE00567E94 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 025D66B52AC3ADCE00567E94 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		028ABF912A903EF000E4A042 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 028ABF902A903EF000E4A042 /* XCRemoteSwiftPackageReference "SwiftSoup" */;

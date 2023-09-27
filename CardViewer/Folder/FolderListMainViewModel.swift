@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FolderListMainViewModel: ObservableObject {
+@Observable class FolderListMainViewModel {
     
     internal init(navigationModel: NavigationModel, folderStore: FolderStore) {
         self.navigationModel = navigationModel
@@ -40,11 +40,11 @@ class FolderListMainViewModel: ObservableObject {
         }
     }
     
-    @Published private var newFolderName = ""
-    @Published private var newFolderLeague: League = .NFL
-    @Published var folderAddEditIsShowing = false
-    @Published var sortingMode: SortingMode = .nameDescending
-    @Published var leagueToDeleteFrom: League?
+    private var newFolderName = ""
+    private var newFolderLeague: League = .NFL
+    var folderAddEditIsShowing = false
+    var sortingMode: SortingMode = .nameDescending
+    var leagueToDeleteFrom: League?
     
     var folders: [(League, [Folder])] {
         
