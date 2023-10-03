@@ -60,7 +60,7 @@ struct ContentView: View {
                 case .cardAddEditView:
                     CardAddEditView(folderStore: folderStore, folder: navigationModel.currentFolder!, card: navigationModel.currentCard)
                 case .cardInfoView:
-                    CardInfoView(card: navigationModel.currentCard!)
+                    CardInfoView(card: navigationModel.currentCard!, navigationModel: navigationModel)
                 }
             }
         }

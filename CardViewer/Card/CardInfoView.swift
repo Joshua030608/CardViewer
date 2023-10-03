@@ -11,9 +11,11 @@ import SwiftyJSON
 @Observable class CardInfoViewModel {
     
     let card: Card
+    let navigationModel: NavigationModel
     
-    init(card: Card) {
+    init(card: Card, navigationModel: NavigationModel) {
         self.card = card
+        self.navigationModel = navigationModel
     }
     
     func moveToCardAddEditView() {
@@ -21,8 +23,10 @@ import SwiftyJSON
         navigationModel.navigationPath.append(Views.cardAddEditView)
     }
     
-    func getFantasyPointsForPlayer(player: String) {
-        
+    func getFantasyPointsForPlayer(player: String, completion: @escaping (String) -> Void) {
+        NetworkService.getProjectedFantasyPointsFor(player: player) { points in
+            completion(points)
+        }
     }
     
 }
@@ -30,52 +34,57 @@ import SwiftyJSON
 struct CardInfoView: View {
     
     @EnvironmentObject var folderStore: FolderStore
-    @EnvironmentObject var navigationModel: NavigationModel
     
-    @State private var viewModel: CardInfoViewModel
+    @State private var model: CardInfoViewModel
+    @State private var points = ""
     
-    init(card: Card) {
-        self._viewModel = State(wrappedValue: CardInfoViewModel(card: card))
+    init(card: Card, navigationModel: NavigationModel) {
+        self._model = State(wrappedValue: CardInfoViewModel(card: card, navigationModel: navigationModel))
     }
     
     var body: some View {
         VStack {
             HStack {
-                if let frontData = card.frontImageData {
+                if let frontData = model.card.frontImageData {
                     Image(uiImage: UIImage(data: frontData)!)
                         .resizable()
                         .frame(width: 150, height: 300)
                         .aspectRatio(contentMode: .fit)
                 }
-                if let backData = card.backImageData {
+                if let backData = model.card.backImageData {
                     Image(uiImage: UIImage(data: backData)!)
                         .resizable()
                         .frame(width: 150, height: 300)
                         .aspectRatio(contentMode: .fit)
                 }
             }
-                Text(card.playerName)
+            Text(model.card.playerName)
                     .font(Font(CTFont(.system, size: 30)))
-            Text(card.position)
+            Text(model.card.position)
                 .font(.title2)
-            Text(card.team)
+            Text(model.card.team)
                 .font(.title2)
-            if card.playerName == "" {
+                Text("Projected Fantasy Points (PPR): \(points)")
+                    .font(.title2)
+            
+            if model.card.playerName == "" {
                 Text("No player name given")
                     .font(Font(CTFont(.system, size: 30)))
             }
-            
             Spacer()
         }
         .task {
-            model.getFantasyPointsForPlayer(player: model.card.playerName)
+            model.getFantasyPointsForPlayer(player: model.card.playerName) { points2 in
+                points = points2
+                print(points)
+            }
         }
         .padding(.top, 25)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    print("Edit Button Pressed for Player: " + card.playerName)
-                    moveToCardAddEditView()
+                    print("Edit Button Pressed for Player: " + model.card.playerName)
+                    model.moveToCardAddEditView()
                 } label: {
                     Text("Edit")
                 }
