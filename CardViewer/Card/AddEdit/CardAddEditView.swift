@@ -52,6 +52,7 @@ struct CardAddEditView: View {
                     .multilineTextAlignment(.center)
                     .font(.largeTitle)
                     .textFieldStyle(.roundedBorder)
+                    .
                 TextField("Team", text: $model.card.team)
                     .multilineTextAlignment(.center)
                     .font(.title2)
@@ -134,7 +135,9 @@ struct CardAddEditView: View {
                 Button {
                     if model.card.playerName != "Name" && model.card.team != "Team" && model.card.position != "Position" {
                         print("save button pressed")
-                        model.saveCardToFolder()
+                        model.saveCardToFolder { card in
+                            navigationModel.currentCard = card
+                        }
                         moveBackToFolderView()
                     } else {
                         model.isShowingAlert = true

@@ -33,13 +33,12 @@ import SwiftyJSON
 
 struct CardInfoView: View {
     
-    @EnvironmentObject var folderStore: FolderStore
-    
     @State private var model: CardInfoViewModel
     @State private var points = ""
     
     init(card: Card, navigationModel: NavigationModel) {
         self._model = State(wrappedValue: CardInfoViewModel(card: card, navigationModel: navigationModel))
+        print(card.playerName)
     }
     
     var body: some View {

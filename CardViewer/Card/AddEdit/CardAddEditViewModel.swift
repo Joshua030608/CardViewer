@@ -87,11 +87,11 @@ class CardAddEditViewModel: ObservableObject {
         }
     }
     
-    func saveCardToFolder() {
-        // if id == id of another card, then edit existing card and don't add a new card. Can't do this yet because editing feature is not out.
+    func saveCardToFolder(completion: @escaping (Card) -> Void) {
         
         if let index = folder.cards.firstIndex(where: { card.id == $0.id }) {
             folder.cards[index] = card
+            completion(card)
         } else {
             folder.cards.append(self.card)
         }
