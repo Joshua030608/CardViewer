@@ -12,6 +12,8 @@ struct CardAddEditView: View {
     @EnvironmentObject var navigationModel: NavigationModel
     @StateObject private var model: CardAddEditViewModel
     
+    @ObservedObject private var autocompleteObject = AutocompleteObject()
+    
     init(folderStore: FolderStore, folder: Folder, card: Card?) {
         let viewModel = CardAddEditViewModel(folderStore: folderStore, folder: folder, card: card)
         self._model = StateObject(wrappedValue: viewModel)
@@ -52,7 +54,25 @@ struct CardAddEditView: View {
                     .multilineTextAlignment(.center)
                     .font(.largeTitle)
                     .textFieldStyle(.roundedBorder)
-                    .
+                    .onChange(of: model.card.playerName) {
+                        autocompleteObject.autocomplete(model.card.playerName)
+                        print(autocompleteObject.suggestions.first ?? "no suggestions")
+                    }
+                
+//                List(autocompleteObject.suggestions, id: \.self) { suggestion in
+//                    Text(suggestion)
+//                        .onTapGesture {
+//                            model.card.playerName = suggestion
+//                        }
+//                }
+//                if let suggestion = autocompleteObject.suggestions.first {
+//                    print(suggestion)
+//                } else {
+//                    print("no suggestion")
+//                }
+                
+                Text(autocompleteObject.suggestions.first ?? "no suggestion")
+                
                 TextField("Team", text: $model.card.team)
                     .multilineTextAlignment(.center)
                     .font(.title2)
@@ -77,24 +97,25 @@ struct CardAddEditView: View {
             }
             Spacer()
         }
-        .onChange(of: model.selectedPhotos, perform: { newValue in
+        .onChange(of: model.selectedPhotos) { _, newValue in
             model.change(newValue: newValue)
             model.isShowingPhotoOptions = false
             model.isShowingCamera = false
-        })
-        .onChange(of: model.image1, perform: { newValue in
+        }
+
+        .onChange(of: model.image1) { _, newValue in
             if let _ = model.image1 {
                 model.changeForUIImage(newValue: newValue, sideOfCard: .front)
             }
-        })
-        .onChange(of: model.image2, perform: { newValue in
+        }
+        .onChange(of: model.image2) { _, newValue in
             if let _ = model.image1 {
                 model.changeForUIImage(newValue: newValue, sideOfCard: .back)
                 model.isShowingPhotoOptions = false
                 model.isShowingCamera = false
                 model.isShowingPreviewView = true
             }
-        })
+        }
         .sheet(isPresented: $model.isShowingPhotoOptions) {
             VStack {
                 PhotosPicker(

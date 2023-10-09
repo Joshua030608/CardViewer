@@ -24,11 +24,10 @@ import SwiftyJSON
     }
     
     func getFantasyPointsForPlayer(player: String, completion: @escaping (String) -> Void) {
-        NetworkService.getProjectedFantasyPointsFor(player: player) { points in
+        NetworkService.shared.getProjectedFantasyPointsFor(player: player) { points in
             completion(points)
         }
     }
-    
 }
 
 struct CardInfoView: View {

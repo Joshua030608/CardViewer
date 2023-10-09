@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		021AC4FF2A7096AA00BF54F4 /* FolderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */; };
+		023673402AD388890002CDA8 /* AutocompleteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236733F2AD388890002CDA8 /* AutocompleteObject.swift */; };
+		023673422AD389800002CDA8 /* NamesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023673412AD389800002CDA8 /* NamesCache.swift */; };
 		02373CB429CD168B00305ADD /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* FolderView.swift */; };
 		02373CB829CD1BDD00305ADD /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 02373CB729CD1BDD00305ADD /* Homework.rtf */; };
 		023CC5082A95844100E3522E /* FolderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023CC5072A95844100E3522E /* FolderListCell.swift */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoView.swift; sourceTree = "<group>"; };
+		0236733F2AD388890002CDA8 /* AutocompleteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteObject.swift; sourceTree = "<group>"; };
+		023673412AD389800002CDA8 /* NamesCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesCache.swift; sourceTree = "<group>"; };
 		02373CB329CD168B00305ADD /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		02373CB729CD1BDD00305ADD /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
 		023CC5072A95844100E3522E /* FolderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListCell.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				0294E77C2A830AEB007E8E7C /* IDImage.swift */,
 				0294E78A2A830E35007E8E7C /* FlipEffect.swift */,
 				025D66B82AC3AE2C00567E94 /* NetworkService.swift */,
+				0236733F2AD388890002CDA8 /* AutocompleteObject.swift */,
+				023673412AD389800002CDA8 /* NamesCache.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -238,7 +244,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					02C9862629C1361300CB87A0 = {
 						CreatedOnToolsVersion = 14.2;
@@ -304,10 +310,12 @@
 				023CC50A2A95858200E3522E /* AddEditFolderSheetView.swift in Sources */,
 				028ABF8F2A903ED700E4A042 /* ScannerView.swift in Sources */,
 				027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */,
+				023673422AD389800002CDA8 /* NamesCache.swift in Sources */,
 				02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */,
 				0294E7812A830B4B007E8E7C /* CardImageDragDropDelegate.swift in Sources */,
 				02EACFA229E60193001B1D44 /* CardAddEditViewModel.swift in Sources */,
 				0294E7892A830DFE007E8E7C /* CardView.swift in Sources */,
+				023673402AD388890002CDA8 /* AutocompleteObject.swift in Sources */,
 				02EACFA629E624A0001B1D44 /* FolderStore.swift in Sources */,
 				028ABF8C2A903ED700E4A042 /* ParsedDataView.swift in Sources */,
 				027F88492A412D4200216E60 /* CameraService.swift in Sources */,
@@ -357,6 +365,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -417,6 +426,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -100,5 +100,84 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A5B9D51-EDFE-49DE-8CE3-4B5F39ABB947"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CardViewer/Other/NamesCache.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "lookup(prefix:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0A5B9D51-EDFE-49DE-8CE3-4B5F39ABB947 - 2d2cc8d1281f3b84"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CardViewer.NamesCache.lookup(prefix: Swift.String) -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "CardViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshuaford/Documents/CardViewer/CardViewer/Other/NamesCache.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "0A5B9D51-EDFE-49DE-8CE3-4B5F39ABB947 - 78f1af4efe96834e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; Swift.Bool in CardViewer.NamesCache.lookup(prefix: Swift.String) -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "CardViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshuaford/Documents/CardViewer/CardViewer/Other/NamesCache.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "0A5B9D51-EDFE-49DE-8CE3-4B5F39ABB947 - 2d2cc8d1281f3b84"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CardViewer.NamesCache.lookup(prefix: Swift.String) -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "CardViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joshuaford/Documents/CardViewer/CardViewer/Other/NamesCache.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8C720551-AEA1-45B4-82F4-FB89678E5CB1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CardViewer/Other/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
