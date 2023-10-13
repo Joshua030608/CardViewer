@@ -8,11 +8,7 @@
 import Foundation
 import SwiftyJSON
 
-protocol PlayerNameSource {
-    func loadPlayerNames() -> [String]
-}
-
-class NetworkService: PlayerNameSource {
+class NetworkService {
     
     static let shared = NetworkService()
     
@@ -21,11 +17,9 @@ class NetworkService: PlayerNameSource {
         "X-RapidAPI-Host": "tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com"
     ]
     
-    var allPlayerNames: [Int: String]
+    private init() {  }
     
-    init() {
-        
-        var playerNames: [Int: String] = [: ]
+    func getPlayerNames(completion: @escaping ([String]) -> Void) {
         
         let request = NSMutableURLRequest(url: NSURL(string: "https://tank01-nfl-live-in-game-real-time-statistics-nfl.p.rapidapi.com/getNFLPlayerList")! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -35,24 +29,20 @@ class NetworkService: PlayerNameSource {
         let dataTask = sesson.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             guard error == nil else {
                 print(error!.localizedDescription)
-                playerNames = [0: "error"]
                 return
             }
             
-            let myJson = try! JSON(data: data!)
-            let names = myJson["body"]
-            
-            for (_, dictOfPlayer) in names {
-                let playerID = Int(dictOfPlayer["espnID"].stringValue)!
-                let playerName = dictOfPlayer["longName"].stringValue
-                //print(playerName)
-                playerNames[playerID] = playerName
+            guard let data = data, let myJson = try? JSON(data: data) else {
+                completion([])
+                return
             }
+            
+            let names = myJson["body"]
+            let playerNames = names.dictionaryValue.values.map { $0["longName"].stringValue }
+            
+            completion(playerNames)
         })
         dataTask.resume()
-        print(playerNames.values)
-        //When printing the playerNames indivdually (line 48), all names were printed. However, self.allPlayerNames is set before allThePlayerNames are had. So, the names are printed but the actuall dictionary is not updated. AllPLayerNames never has the players in it.
-        self.allPlayerNames = playerNames
     }
     
     func getProjectedFantasyPointsFor(player: String, completion: @escaping (String) -> Void) {
@@ -81,9 +71,5 @@ class NetworkService: PlayerNameSource {
             }
         })
         dataTask.resume()
-    }
-    
-    func loadPlayerNames() -> [String] {
-        return Array(allPlayerNames.values)
     }
 }

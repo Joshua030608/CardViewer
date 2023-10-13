@@ -7,29 +7,20 @@
 
 import Foundation
 
-actor NamesCache {
-    let source: PlayerNameSource
+@Observable class NamesCache {
+    let source: NetworkService
+    var names: [String] = []
     
-    init(source: PlayerNameSource) {
+    
+    init(source: NetworkService) {
         self.source = source
-    }
-    
-    var names: [String] {
-        if let names1 = cachedNames {
-            return names1
+        source.getPlayerNames { [weak self] names in
+            self?.names = names
         }
-        
-        let namesFromSource = source.loadPlayerNames()
-        cachedNames = namesFromSource
-        return namesFromSource
     }
-    
-    private var cachedNames: [String]?
-}
-
-extension NamesCache {
+        
     func lookup(prefix: String) -> [String] {
-        let filterdNames = names.filter { $0.lowercased().hasPrefix(prefix.lowercased()) }
-        return filterdNames
+            let filteredNames = names.filter { $0.lowercased().hasPrefix(prefix.lowercased()) }
+            return filteredNames
     }
 }

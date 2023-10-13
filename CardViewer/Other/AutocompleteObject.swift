@@ -10,12 +10,7 @@ import Foundation
 @MainActor
 final class AutocompleteObject: ObservableObject {
 
-    let delay: TimeInterval = 0.3
-
     @Published var suggestions: [String] = []
-
-    init() {
-    }
 
     private let namesCache = NamesCache(source: NetworkService.shared)
 
@@ -31,9 +26,8 @@ final class AutocompleteObject: ObservableObject {
         task?.cancel()
 
         task = Task {
-            //await Task.sleep(UInt64(delay * 1_000_000_000.0))
             do {
-                try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000.0))
+                try await Task.sleep(nanoseconds: UInt64(0.3 * 1_000_000_000.0))
             } catch {
                 return
             }

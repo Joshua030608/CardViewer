@@ -17,7 +17,7 @@ enum Views: String {
 }
 
 struct ContentView: View {
-    @StateObject private var folderStore: FolderStore
+    @ObservedObject private var folderStore: FolderStore
     @EnvironmentObject var navigationModel: NavigationModel
     var body: some View {
         NavigationStack(path: $navigationModel.navigationPath) {
