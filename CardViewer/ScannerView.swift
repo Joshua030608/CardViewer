@@ -24,16 +24,16 @@ struct ScannerView: View {
 //                        .foregroundColor(.white)
 //                        .padding(.bottom)
 //                }
-            .onChange(of: scanResult, perform: { _ in
-                if URL(string: scanResult) != nil {
-                    //testString = scanResult
-                    let parsedData = parser.parseHtmlAsURLString(scanResult)
-                    if let parsedData = parsedData {
-                        navigationModel.currentCard = Card(playerName: parsedData.0, team: "", frontImageData: nil, backImageData: nil, position: "", grade: parsedData.1)
+                .onChange(of: scanResult) {
+                    if URL(string: scanResult) != nil {
+                        //testString = scanResult
+                        let parsedData = parser.parseHtmlAsURLString(scanResult)
+                        if let parsedData = parsedData {
+                            navigationModel.currentCard = Card(playerName: parsedData.0, team: "", frontImageData: nil, backImageData: nil, position: "", grade: parsedData.1)
+                        }
+                        navigationModel.navigationPath.append(Views.cardAddEditView)
                     }
-                    navigationModel.navigationPath.append(Views.cardAddEditView)
-                }
-            })
+            }
         }
     }
 }

@@ -26,18 +26,18 @@ final class AutocompleteObject: ObservableObject {
         task?.cancel()
 
         task = Task {
-            do {
-                try await Task.sleep(nanoseconds: UInt64(0.3 * 1_000_000_000.0))
-            } catch {
-                return
-            }
+//            do {
+//                try await Task.sleep(nanoseconds: UInt64(0.3 * 1_000_000_000.0))
+//            } catch {
+//                return
+//            }
             
             
             guard !Task.isCancelled else {
                 return
             }
 
-            let newSuggestions = await namesCache.lookup(prefix: text)
+            let newSuggestions = /*await*/ namesCache.lookup(prefix: text)
 
             if isSuggestion(in: suggestions, equalTo: text) {
                 // Do not offer only one suggestion same as the input

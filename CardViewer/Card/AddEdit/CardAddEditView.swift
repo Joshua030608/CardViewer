@@ -59,19 +59,14 @@ struct CardAddEditView: View {
                         print(autocompleteObject.suggestions.first ?? "no suggestions")
                     }
                 
-//                List(autocompleteObject.suggestions, id: \.self) { suggestion in
-//                    Text(suggestion)
-//                        .onTapGesture {
-//                            model.card.playerName = suggestion
-//                        }
-//                }
-//                if let suggestion = autocompleteObject.suggestions.first {
-//                    print(suggestion)
-//                } else {
-//                    print("no suggestion")
-//                }
+                List(autocompleteObject.suggestions, id: \.self) { suggestion in
+                    Text(suggestion)
+                        .onTapGesture {
+                            model.card.playerName = suggestion
+                        }
+                }
                 
-                Text(autocompleteObject.suggestions.first ?? "no suggestion")
+                //Text(autocompleteObject.suggestions.first ?? "no suggestion")
                 
                 TextField("Team", text: $model.card.team)
                     .multilineTextAlignment(.center)

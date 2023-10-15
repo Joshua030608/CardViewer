@@ -66,12 +66,6 @@ struct ContentView: View {
         }
     }
     init(folderStore: FolderStore) {
-        self._folderStore = StateObject(wrappedValue: folderStore)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(folderStore: FolderStore())
+        self.folderStore = folderStore
     }
 }

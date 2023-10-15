@@ -29,6 +29,7 @@ class NetworkService {
         let dataTask = sesson.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             guard error == nil else {
                 print(error!.localizedDescription)
+                print(response as Any)
                 return
             }
             
@@ -38,7 +39,9 @@ class NetworkService {
             }
             
             let names = myJson["body"]
-            let playerNames = names.dictionaryValue.values.map { $0["longName"].stringValue }
+            let playerNames = names.arrayValue.map {
+                $0["longName"].stringValue
+            }
             
             completion(playerNames)
         })

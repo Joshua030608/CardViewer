@@ -149,7 +149,7 @@ struct FolderView: View {
                 .labelsHidden()
                 .pickerStyle(.segmented)
             }
-        }.onChange(of: folder.cards.count) { _ in
+        }.onChange(of: folder.cards.count) {
             hasAddedACard = true
         }
     }

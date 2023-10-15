@@ -20,7 +20,8 @@ import Foundation
     }
         
     func lookup(prefix: String) -> [String] {
-            let filteredNames = names.filter { $0.lowercased().hasPrefix(prefix.lowercased()) }
-            return filteredNames
+        print(names.count)
+        let filteredNames = names.filter { $0.lowercased().hasPrefix(prefix.lowercased()) }
+        return filteredNames
     }
 }
