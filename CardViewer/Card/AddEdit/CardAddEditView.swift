@@ -14,6 +14,17 @@ struct CardAddEditView: View {
     
     @ObservedObject private var autocompleteObject = AutocompleteObject()
     
+    @FocusState private var isNameFocused: Bool
+    
+    private var suggestions: [String] {
+        let suggestions = autocompleteObject.suggestions
+        if suggestions.isEmpty {
+            return ["No Players Found"]
+        } else {
+            return suggestions
+        }
+    }
+    
     init(folderStore: FolderStore, folder: Folder, card: Card?) {
         let viewModel = CardAddEditViewModel(folderStore: folderStore, folder: folder, card: card)
         self._model = StateObject(wrappedValue: viewModel)
@@ -29,68 +40,77 @@ struct CardAddEditView: View {
     }
     
     var body: some View {
-        VStack {
-            Spacer()
-            Form {
-                if let frontData = model.card.frontImageData, let backData = model.card.backImageData {
-                    CardAddEditImageView(frontData: frontData, backData: backData)
-                } else {
-                    Button {
-                        model.isShowingPhotoOptions = true
-                    } label: {
-                        VStack {
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                            Text("Add Image(s)")
-                                .font(.largeTitle)
-                                .frame(width: 197)
-                        }
-                    }.padding(100)
-                }
-                //Spacer(): doesn't do anything cuz of form
-                //: Tried using form with image inside but didn't look correct
-                TextField("Name", text: $model.card.playerName)
-                    .multilineTextAlignment(.center)
-                    .font(.largeTitle)
-                    .textFieldStyle(.roundedBorder)
-                    .onChange(of: model.card.playerName) {
-                        autocompleteObject.autocomplete(model.card.playerName)
-                        print(autocompleteObject.suggestions.first ?? "no suggestions")
+        let _ = Self._printChanges()
+        Form {
+            if let frontData = model.card.frontImageData, let backData = model.card.backImageData {
+                CardAddEditImageView(frontData: frontData, backData: backData)
+            } else {
+                Button {
+                    model.isShowingPhotoOptions = true
+                } label: {
+                    VStack {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                        Text("Add Image(s)")
+                            .font(.largeTitle)
+                            .frame(width: 197)
                     }
-                
-                List(autocompleteObject.suggestions, id: \.self) { suggestion in
-                    Text(suggestion)
-                        .onTapGesture {
-                            model.card.playerName = suggestion
-                        }
-                }
-                
-                //Text(autocompleteObject.suggestions.first ?? "no suggestion")
-                
-                TextField("Team", text: $model.card.team)
-                    .multilineTextAlignment(.center)
-                    .font(.title2)
-                    .textFieldStyle(.roundedBorder)
-                TextField("Position", text: $model.card.position)
-                    .multilineTextAlignment(.center)
-                    .font(.title2)
-                    .textFieldStyle(.roundedBorder)
-                HStack {
-                    Text("Grade:")
-                        .font(.title2)
-                    Picker(
-                        selection: $model.card.grade,
-                        label: Text("")) {
-                            ForEach(0..<11) { number in
-                                Text("\(number)")
-                                    .tag(number)
-                            }
-                        }
-                }
-                
+                }.padding(100)
             }
-            Spacer()
+            //Spacer(): doesn't do anything cuz of form
+            //: Tried using form with image inside but didn't look correct
+            TextField("Name", text: $model.card.playerName)
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .textFieldStyle(.roundedBorder)
+                .focused($isNameFocused)
+                .id(1)
+                .onChange(of: model.card.playerName) {
+                    autocompleteObject.autocomplete(model.card.playerName)
+                    isNameFocused = true
+                }
+                .onChange(of: isNameFocused) { old, new in
+                    print(old, new)
+                }
+                .onChange(of: suggestions.count) {
+                    isNameFocused = true
+                }
+            
+            List(autocompleteObject.suggestions, id: \.self) { suggestion in
+                Text(suggestion)
+                    .onTapGesture {
+                        model.card.playerName = suggestion
+                    }
+            }
+            .onAppear {
+                isNameFocused = true
+            }
+            .onDisappear {
+                print("on Dissapear")
+                isNameFocused = true
+            }
+            
+            TextField("Team", text: $model.card.team)
+                .multilineTextAlignment(.center)
+                .font(.title2)
+                .textFieldStyle(.roundedBorder)
+            TextField("Position", text: $model.card.position)
+                .multilineTextAlignment(.center)
+                .font(.title2)
+                .textFieldStyle(.roundedBorder)
+            HStack {
+                Text("Grade:")
+                    .font(.title2)
+                Picker(
+                    selection: $model.card.grade,
+                    label: Text("")) {
+                        ForEach(0..<11) { number in
+                            Text("\(number)")
+                                .tag(number)
+                    }
+                }
+            }
         }
         .onChange(of: model.selectedPhotos) { _, newValue in
             model.change(newValue: newValue)

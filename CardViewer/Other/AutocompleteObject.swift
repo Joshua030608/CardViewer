@@ -39,7 +39,7 @@ final class AutocompleteObject: ObservableObject {
 
             let newSuggestions = /*await*/ namesCache.lookup(prefix: text)
 
-            if isSuggestion(in: suggestions, equalTo: text) {
+            if isSuggestion(in: newSuggestions, equalTo: text) {
                 // Do not offer only one suggestion same as the input
                 suggestions = []
             } else {
