@@ -56,11 +56,11 @@ struct CardInfoView: View {
                         .aspectRatio(contentMode: .fit)
                 }
             }
-            Text(model.card.playerName)
+            Text(model.card.playerName ?? "No Name!")
                     .font(Font(CTFont(.system, size: 30)))
-            Text(model.card.position)
+            Text(model.card.position ?? "No Position!")
                 .font(.title2)
-            Text(model.card.team)
+            Text(model.card.team ?? "No Team!")
                 .font(.title2)
                 Text("Projected Fantasy Points (PPR): \(points)")
                     .font(.title2)
@@ -72,7 +72,7 @@ struct CardInfoView: View {
             Spacer()
         }
         .task {
-            model.getFantasyPointsForPlayer(player: model.card.playerName) { points2 in
+            model.getFantasyPointsForPlayer(player: model.card.playerName ?? "") { points2 in
                 points = points2
                 print(points)
             }
@@ -81,7 +81,7 @@ struct CardInfoView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    print("Edit Button Pressed for Player: " + model.card.playerName)
+                    print("Edit Button Pressed for Player: " + (model.card.playerName ?? "No Name"))
                     model.moveToCardAddEditView()
                 } label: {
                     Text("Edit")

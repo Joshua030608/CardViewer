@@ -52,11 +52,14 @@ struct FolderView: View {
         return folder.cards.filter { card in
             switch searchMode {
             case .name:
-                return card.playerName.lowercased().contains(searchString.lowercased())
+                guard let name = card.playerName else { return false }
+                return name.lowercased().contains(searchString.lowercased())
             case .position:
-                return card.position.lowercased().contains(searchString.lowercased())
+                guard let pos = card.position else { return false }
+                return pos.lowercased().contains(searchString.lowercased())
             case .team:
-                return card.team.lowercased().contains(searchString.lowercased())
+                guard let team = card.team else { return false }
+                return team.lowercased().contains(searchString.lowercased())
             }
         }
     }
@@ -103,7 +106,7 @@ struct FolderView: View {
                         .padding(125)
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .opacity(cards.isEmpty ? 1.0 : 0.0)
                 }

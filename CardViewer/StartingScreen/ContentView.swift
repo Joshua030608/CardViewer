@@ -22,30 +22,26 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $navigationModel.navigationPath) {
             ZStack {
-                Color.red
+                Color.black
                     .ignoresSafeArea()
                 VStack {
-                    //                    Button {
-                    //                        navigationModel.navigationPath.append(Views.folderListView)
-                    //                    } label: {
-                    //                        Text("Add to Path")
-                    //                    }
-                    
-                    Image(systemName: "globe")
+                    Image(systemName: "lanyardcard")
                         .resizable()
-                        .frame(maxWidth: 100, maxHeight: 100)
+                        .frame(maxWidth: 100, maxHeight: 150)
                         .imageScale(.large)
                         .font(.largeTitle)
+                        .foregroundStyle(.orange)
                     Text("CardViewer")
-                        .font(.largeTitle)
+                        .font(.custom("San Francisco", size: 50))
+                        .foregroundStyle(.orange)
                     Button {
                         navigationModel.navigationPath.append(Views.folderListView)
                     } label: {
-                        Text("Start")
-                            .font(.largeTitle)
-                            .background(Color.black)
+                            Text("START")
+                                .font(.largeTitle)
+                                .foregroundStyle(.green)
                     }
-                    .padding()
+                    .padding(30)
                 }
             }.navigationDestination(for: Views.self) { viewsCase in
                 switch viewsCase {

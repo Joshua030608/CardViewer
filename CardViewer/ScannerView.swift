@@ -17,13 +17,6 @@ struct ScannerView: View {
     var body: some View {
             ZStack(alignment: .bottom) {
                 QRScanner(result: $scanResult)
-//                VStack {
-//                    Text(scanResult)
-//                        .padding()
-//                        .background(.black)
-//                        .foregroundColor(.white)
-//                        .padding(.bottom)
-//                }
                 .onChange(of: scanResult) {
                     if URL(string: scanResult) != nil {
                         //testString = scanResult

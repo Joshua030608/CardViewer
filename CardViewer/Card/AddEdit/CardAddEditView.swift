@@ -14,8 +14,6 @@ struct CardAddEditView: View {
     
     @ObservedObject private var autocompleteObject = AutocompleteObject()
     
-    @FocusState private var isNameFocused: Bool
-    
     private var suggestions: [String] {
         let suggestions = autocompleteObject.suggestions
         if suggestions.isEmpty {
@@ -58,44 +56,30 @@ struct CardAddEditView: View {
                     }
                 }.padding(100)
             }
-            //Spacer(): doesn't do anything cuz of form
-            //: Tried using form with image inside but didn't look correct
-            TextField("Name", text: $model.card.playerName)
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .textFieldStyle(.roundedBorder)
-                .focused($isNameFocused)
-                .id(1)
-                .onChange(of: model.card.playerName) {
-                    autocompleteObject.autocomplete(model.card.playerName)
-                    isNameFocused = true
-                }
-                .onChange(of: isNameFocused) { old, new in
-                    print(old, new)
-                }
-                .onChange(of: suggestions.count) {
-                    isNameFocused = true
-                }
-            
-            List(autocompleteObject.suggestions, id: \.self) { suggestion in
-                Text(suggestion)
-                    .onTapGesture {
-                        model.card.playerName = suggestion
-                    }
-            }
-            .onAppear {
-                isNameFocused = true
-            }
-            .onDisappear {
-                print("on Dissapear")
-                isNameFocused = true
-            }
-            
-            TextField("Team", text: $model.card.team)
-                .multilineTextAlignment(.center)
-                .font(.title2)
-                .textFieldStyle(.roundedBorder)
-            TextField("Position", text: $model.card.position)
+//            TextField("Name", text: $model.card.playerName)
+//                .multilineTextAlignment(.center)
+//                .font(.largeTitle)
+//                .textFieldStyle(.roundedBorder)
+//                .id(1)
+//                .onChange(of: model.card.playerName) {
+//                    autocompleteObject.autocomplete(model.card.playerName)
+//                }
+//            if autocompleteObject.suggestions.isEmpty == false {
+//                List(autocompleteObject.suggestions, id: \.self) { suggestion in
+//                    Text(suggestion)
+//                        .onTapGesture {
+//                            model.card.playerName = suggestion
+//                        }
+//                }
+//            }
+//            
+//            TextField("Team", text: $model.card.team)
+//                .multilineTextAlignment(.center)
+//                .font(.title2)
+//                .textFieldStyle(.roundedBorder)
+            TextField("Position", text: Binding(get: {
+                if let position = model.card.position { position } else { "" }
+            }, set: { model.card.position = ($0 == "") ? nil : $0 }))
                 .multilineTextAlignment(.center)
                 .font(.title2)
                 .textFieldStyle(.roundedBorder)
@@ -107,7 +91,7 @@ struct CardAddEditView: View {
                     label: Text("")) {
                         ForEach(0..<11) { number in
                             Text("\(number)")
-                                .tag(number)
+                                .tag(number == 0 ? nil : number)
                     }
                 }
             }
@@ -156,10 +140,10 @@ struct CardAddEditView: View {
                         Image(systemName: "camera.fill")
                             .resizable()
                             .frame(width: 100, height: 100)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.orange)
                             .aspectRatio(contentMode: .fit)
                         Text("Take Photo(s)")
-                            .foregroundColor(.blue)
+                            .foregroundColor(.orange)
                             .font(.largeTitle)
                             .frame(width: 197)
                     }

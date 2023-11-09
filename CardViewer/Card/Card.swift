@@ -9,14 +9,14 @@ import Foundation
 
 struct Card: Identifiable, Codable, Hashable {
     let id: UUID
-    var playerName: String
-    var team: String
+    var playerName: String?
+    var team: String?
     var frontImageData: Data?
     var backImageData: Data?
-    var position: String
-    var grade: Int
+    var position: String?
+    var grade: Int?
     
-    init(id: UUID = UUID(), playerName: String, team: String, frontImageData: Data?, backImageData: Data?, position: String, grade: Int) {
+    init(id: UUID = UUID(), playerName: String?, team: String?, frontImageData: Data?, backImageData: Data?, position: String?, grade: Int?) {
         self.id = id
         self.playerName = playerName
         self.team = team

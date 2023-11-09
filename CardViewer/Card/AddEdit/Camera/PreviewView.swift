@@ -38,7 +38,7 @@ struct PreviewView: View {
             Button(action: retakeHandler) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.white)
                         .frame(width: 150, height: 50)
                     Text("Retake")
                         .foregroundColor(.white)
@@ -49,7 +49,7 @@ struct PreviewView: View {
             Button(action: confirmHandler) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.white)
                         .frame(width: 150, height: 50)
                     Text("Confirm")
                         .foregroundColor(.white)

@@ -21,3 +21,4 @@ class IDImage: Identifiable, Equatable, ObservableObject {
         self.id = id
     }
 }
+

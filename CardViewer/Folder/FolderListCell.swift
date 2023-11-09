@@ -16,13 +16,13 @@ struct FolderListCell: View {
         HStack {
             Text("Name: " + folder.name)
                 .font(.largeTitle)
-                .foregroundColor(colorScheme == .light ? .black : .white)
+                .foregroundColor(.white)
             Text("League: " + folder.league.title)
                 .font(.title)
-                .foregroundColor(colorScheme == .light ? .black : .white)
+                .foregroundColor(.white)
             Text("# of Cards: " + String(folder.cards.count))
                 .font(.title)
-                .foregroundColor(colorScheme == .light ? .black : .white)
+                .foregroundColor(.white)
         }
     }
 }

@@ -23,19 +23,19 @@ struct CardView: View {
         } label: {
             HStack {
                 VStack {
-                    Text(card.playerName)
-                        .foregroundColor(colorScheme == .light ? .black : .white)
-                    Text(card.team)
-                        .foregroundColor(colorScheme == .light ? .black : .white)
+                    Text(card.playerName ?? "No Name!")
+                        .foregroundColor(.white)
+                    Text(card.team ?? "No Name!")
+                        .foregroundColor(.white)
                     if card.playerName == "" {
                         Text("No name")
                             .font(.title2)
-                            .foregroundColor(colorScheme == .light ? .black : .white)
+                            .foregroundColor(.white)
                     }
                 }
                 Spacer()
-                Text(card.position)
-                    .foregroundColor(colorScheme == .light ? .black : .white)
+                Text(card.position ?? "No Position!")
+                    .foregroundColor(.white)
                 Spacer()
                 /*if let _ = card.frontImageData {
                     Image(uiImage: isShowingFront ? UIImage(data: card.frontImageData!)! : UIImage(data: card.backImageData!)!)
@@ -82,7 +82,7 @@ struct CardView: View {
                 } else {
                     Text("No Images Found!")
                         .font(.title3)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                 }
             }
         }

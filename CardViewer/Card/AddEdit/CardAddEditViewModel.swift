@@ -94,6 +94,7 @@ class CardAddEditViewModel: ObservableObject {
             completion(card)
         } else {
             folder.cards.append(self.card)
+            print(card.frontImageData)
         }
             folderStore.saveFolders()
     }
@@ -107,7 +108,7 @@ class CardAddEditViewModel: ObservableObject {
             self.card = card
         } else {
             self.isEditing = false
-            self.card = Card(playerName: "Name", team: "Team", frontImageData: nil, backImageData: nil, position: "Position", grade: 0)
+            self.card = Card(playerName: nil, team: nil, frontImageData: nil, backImageData: nil, position: nil, grade: nil)
         }
     }
 }

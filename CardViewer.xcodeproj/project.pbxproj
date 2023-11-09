@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		021AC4FF2A7096AA00BF54F4 /* FolderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */; };
+		0227A1F92AFC6769003BF97A /* CardAddEditImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0227A1F82AFC6769003BF97A /* CardAddEditImageViewModel.swift */; };
 		023673402AD388890002CDA8 /* AutocompleteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0236733F2AD388890002CDA8 /* AutocompleteObject.swift */; };
 		023673422AD389800002CDA8 /* NamesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023673412AD389800002CDA8 /* NamesCache.swift */; };
 		02373CB429CD168B00305ADD /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02373CB329CD168B00305ADD /* FolderView.swift */; };
@@ -23,7 +24,6 @@
 		027F884B2A4131FD00216E60 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884A2A4131FD00216E60 /* CameraView.swift */; };
 		027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F884C2A4216A500216E60 /* CustomCameraView.swift */; };
 		028ABF8A2A903ED700E4A042 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF842A903ED700E4A042 /* HTMLParser.swift */; };
-		028ABF8C2A903ED700E4A042 /* ParsedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF862A903ED700E4A042 /* ParsedDataView.swift */; };
 		028ABF8D2A903ED700E4A042 /* QRScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF872A903ED700E4A042 /* QRScanner.swift */; };
 		028ABF8F2A903ED700E4A042 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ABF892A903ED700E4A042 /* ScannerView.swift */; };
 		028ABF922A903EF000E4A042 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 028ABF912A903EF000E4A042 /* SwiftSoup */; };
@@ -48,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		021AC4FE2A7096AA00BF54F4 /* FolderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoView.swift; sourceTree = "<group>"; };
+		0227A1F82AFC6769003BF97A /* CardAddEditImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddEditImageViewModel.swift; sourceTree = "<group>"; };
 		0236733F2AD388890002CDA8 /* AutocompleteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteObject.swift; sourceTree = "<group>"; };
 		023673412AD389800002CDA8 /* NamesCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesCache.swift; sourceTree = "<group>"; };
 		02373CB329CD168B00305ADD /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		027F884A2A4131FD00216E60 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		027F884C2A4216A500216E60 /* CustomCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraView.swift; sourceTree = "<group>"; };
 		028ABF842A903ED700E4A042 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
-		028ABF862A903ED700E4A042 /* ParsedDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedDataView.swift; sourceTree = "<group>"; };
 		028ABF872A903ED700E4A042 /* QRScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanner.swift; sourceTree = "<group>"; };
 		028ABF892A903ED700E4A042 /* ScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		0294E77C2A830AEB007E8E7C /* IDImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDImage.swift; sourceTree = "<group>"; };
@@ -140,6 +140,7 @@
 				02EACFA129E60193001B1D44 /* CardAddEditViewModel.swift */,
 				02BCEC5129D7A5DA009AC8EB /* CardAddEditView.swift */,
 				0294E77E2A830B06007E8E7C /* CardAddEditImageView.swift */,
+				0227A1F82AFC6769003BF97A /* CardAddEditImageViewModel.swift */,
 				0294E7802A830B4B007E8E7C /* CardImageDragDropDelegate.swift */,
 			);
 			path = AddEdit;
@@ -191,7 +192,6 @@
 			children = (
 				028ABF892A903ED700E4A042 /* ScannerView.swift */,
 				028ABF842A903ED700E4A042 /* HTMLParser.swift */,
-				028ABF862A903ED700E4A042 /* ParsedDataView.swift */,
 				028ABF872A903ED700E4A042 /* QRScanner.swift */,
 				0294E7872A830D46007E8E7C /* Other */,
 				0294E7842A830C8D007E8E7C /* Card */,
@@ -309,6 +309,7 @@
 				028ABF8A2A903ED700E4A042 /* HTMLParser.swift in Sources */,
 				023CC50A2A95858200E3522E /* AddEditFolderSheetView.swift in Sources */,
 				028ABF8F2A903ED700E4A042 /* ScannerView.swift in Sources */,
+				0227A1F92AFC6769003BF97A /* CardAddEditImageViewModel.swift in Sources */,
 				027F884D2A4216A500216E60 /* CustomCameraView.swift in Sources */,
 				023673422AD389800002CDA8 /* NamesCache.swift in Sources */,
 				02BCEC5229D7A5DA009AC8EB /* CardAddEditView.swift in Sources */,
@@ -317,7 +318,6 @@
 				0294E7892A830DFE007E8E7C /* CardView.swift in Sources */,
 				023673402AD388890002CDA8 /* AutocompleteObject.swift in Sources */,
 				02EACFA629E624A0001B1D44 /* FolderStore.swift in Sources */,
-				028ABF8C2A903ED700E4A042 /* ParsedDataView.swift in Sources */,
 				027F88492A412D4200216E60 /* CameraService.swift in Sources */,
 				02BCEC5029D7A22D009AC8EB /* Card.swift in Sources */,
 				02EACFA429E6235E001B1D44 /* Folder.swift in Sources */,
@@ -449,10 +449,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Test;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.08;
+				CURRENT_PROJECT_VERSION = 1.09;
 				DEVELOPMENT_ASSET_PATHS = "\"CardViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KTP2C8ZWM3;
@@ -484,10 +484,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = Test;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.08;
+				CURRENT_PROJECT_VERSION = 1.09;
 				DEVELOPMENT_ASSET_PATHS = "\"CardViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KTP2C8ZWM3;
