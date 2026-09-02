@@ -1,0 +1,11 @@
+.DS_Store
+DerivedData/
+build/
+xcuserdata/
+*.xcuserstate
+*.xcbkptlist
+
+# Keep local credentials out of source control.
+.env
+.env.*
+Secrets.swift
